@@ -1,6 +1,8 @@
-#include <mcurses/signal_module/optional.hpp>
-#include <mcurses/signal_module/optional_last_value.hpp>
+#include <optional.hpp>
+#include <optional_last_value.hpp>
+
 #include <gtest/gtest.h>
+
 #include <vector>
 
 TEST(OptionalLastValueTest, VectorTest)

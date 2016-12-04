@@ -1,7 +1,9 @@
-#include <mcurses/signal_module/optional.hpp>
-#include <mcurses/signal_module/none.hpp>
-#include <mcurses/signal_module/bad_optional_access.hpp>
+#include <optional.hpp>
+#include <none.hpp>
+#include <bad_optional_access.hpp>
+
 #include <gtest/gtest.h>
+
 #include <string>
 
 TEST(OptionalTest, DefaultConstructor)

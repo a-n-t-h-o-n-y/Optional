@@ -1,4 +1,5 @@
-#include <mcurses/signal_module/none.hpp>
+#include <none.hpp>
+
 #include <gtest/gtest.h>
 
 TEST(NoneTest, BoolConversion)

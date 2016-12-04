@@ -4,6 +4,7 @@
 
 #include "none.hpp"
 #include "bad_optional_access.hpp"
+
 #include <memory>
 
 namespace mcurses
