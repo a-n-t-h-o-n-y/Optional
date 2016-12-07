@@ -10,6 +10,7 @@ namespace mcurses {
 /// Exception for use when an empty Optional<T> object is accessed.
 class Bad_optional_access : public std::logic_error {
    public:
+    /// \param what Used to identify the exception.
     explicit Bad_optional_access(const char* what) : std::logic_error(what) {}
 };
 

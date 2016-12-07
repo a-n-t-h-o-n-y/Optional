@@ -1,5 +1,5 @@
 ///	\file
-/// Contains Optional template class definition.
+/// \brief Contains Optional template class definition.
 #ifndef OPTIONAL_HPP
 #define OPTIONAL_HPP
 
@@ -270,7 +270,7 @@ class Optional {
 
     /// \brief Direct access to the underlying object, or throw exception.
     ///
-    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on 
+    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// const &.
     /// \returns const l-value reference to the underlying object.
     const T& value() const & {
@@ -281,7 +281,7 @@ class Optional {
 
     /// \brief Direct access to the underlying object, or throw exception.
     ///
-    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on 
+    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &.
     /// \returns l-value reference to the underlying object.
     T& value() & {
@@ -292,7 +292,7 @@ class Optional {
 
     /// \brief Direct access to the underlying object, or throw exception.
     ///
-    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on 
+    /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &&.
     /// \returns r-value reference to the underlying object.
     T&& value() && {
