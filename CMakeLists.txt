@@ -27,7 +27,6 @@ include_directories(include)
 # Collect Test Sources
 list(APPEND TEST_SOURCES "test/none_test.cpp"
 						 "test/optional_test.cpp"
-						 "test/optional_last_value_test.cpp"
 						 )
 
 # Create Test Executable
