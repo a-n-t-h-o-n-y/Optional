@@ -1,28 +1,18 @@
-/// \file bad_optional_access.hpp
+/// \file
+/// \brief Contains the bad_optional_access exception class definition.
 #ifndef BAD_OPTIONAL_ACCESS_HPP
 #define BAD_OPTIONAL_ACCESS_HPP
 
-#include <exception>
-#include <memory>
-#include <string>
+#include <stdexcept>
 
-namespace mcurses
-{
+namespace mcurses {
 
-class bad_optional_access: public std::exception {
-public:
-	bad_optional_access(){}
-	bad_optional_access(const std::string& w):what_{w}{}
-	bad_optional_access(std::string&& w):what_{std::forward<std::string>(w)}{}
-	
-	const char* what() const throw() override
-	{
-		return what_.c_str();
-	}
-private:
-	std::string what_;
+/// Exception for use when an empty Optional<T> object is accessed.
+class Bad_optional_access : public std::logic_error {
+   public:
+    explicit Bad_optional_access(const char* what) : std::logic_error(what) {}
 };
 
-}	// namespace mcurses
+}  // namespace mcurses
 
-#endif	// BAD_OPTIONAL_ACCESS_HPP
+#endif  // BAD_OPTIONAL_ACCESS_HPP

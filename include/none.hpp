@@ -1,31 +1,23 @@
-/// \file none.hpp
+/// \file
+/// \brief Contains definition of the None_t class and a global None_t object.
 #ifndef NONE_HPP
 #define NONE_HPP
 
 /** \namespace mcurses
  *	MCurses Library wide namespace
  */
-namespace mcurses
-{
+namespace mcurses {
 
-/**	\class none_t
- *	\brief Represents no value.
- *
- *	Object of none_t type will evaluate to false.
- *	Used to initialize optional<T> to an empty/uninitialized state.
- */
-class none_t {
-public:
-	explicit operator bool() const {return false;}
-};
+/// Represents 'no value', or null.
+class None_t {
+   public:
+    /// Safe bool conversion.
+    explicit operator bool() const { return false; }
+} const none;
 
-/**	\var none
- *	\brief Global object similar to null.
- *
- *	Used in mcurses::optional<T> as a return type to mean 'no value'.
- */
-const none_t none{};
+///	\var none
+/// Convenience global None_t object.
 
-}	// namespace mcurses
+}  // namespace mcurses
 
-#endif	// NONE_HPP
+#endif  // NONE_HPP

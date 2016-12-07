@@ -5,54 +5,55 @@
 #include <gtest/gtest.h>
 
 #include <string>
+#include <utility>
 
 TEST(OptionalTest, DefaultConstructor)
 {
-	mcurses::optional<int> opt{};
+	mcurses::Optional<int> opt{};
 	EXPECT_FALSE(bool(opt));
 }
 
 TEST(OptionalTest, NoneTypeConstructor)
 {
-	mcurses::optional<int> opt{mcurses::none};
+	mcurses::Optional<int> opt{mcurses::none};
 	EXPECT_FALSE(bool(opt));
 }
 
 TEST(OptionalTest, ConstLValueConstructor)
 {
 	int i = 5;
-	mcurses::optional<int> opt1{i};
+	mcurses::Optional<int> opt1{i};
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(5, *opt1);
 
 	const int ii = -7;
-	mcurses::optional<int> opt2{ii};
+	mcurses::Optional<int> opt2{ii};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(-7, *opt2);
 
 	const char c = 'k';
-	mcurses::optional<int> opt3{c};
+	mcurses::Optional<int> opt3{c};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ('k', *opt3);
 
 	const char& c_r = c;
-	mcurses::optional<int> opt4{c_r};
+	mcurses::Optional<int> opt4{c_r};
 	ASSERT_TRUE(bool(opt4));
 	EXPECT_EQ('k', *opt4);
 }
 
 TEST(OptionalTest, RValueConstructor)
 {
-	mcurses::optional<int> opt1{7};
+	mcurses::Optional<int> opt1{7};
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(7, *opt1);
 
-	mcurses::optional<char> opt2{'k'};
+	mcurses::Optional<char> opt2{'k'};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ('k', *opt2);
 
 	int i = -8;
-	mcurses::optional<int> opt3{std::move(i)};
+	mcurses::Optional<int> opt3{std::move(i)};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ(-8, *opt3);
 }
@@ -64,43 +65,43 @@ TEST(OptionalTest, ConditionalConstructor)
 	bool cond_t = true;
 	bool cond_f = false;
 
-	mcurses::optional<int> opt1{true, 7};
+	mcurses::Optional<int> opt1{true, 7};
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(7, *opt1);
 
-	mcurses::optional<int> opt2{false, 7};
+	mcurses::Optional<int> opt2{false, 7};
 	EXPECT_FALSE(bool(opt2));
 
-	mcurses::optional<char> opt3{cond_t, c};
+	mcurses::Optional<char> opt3{cond_t, c};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ('k', *opt3);
 
-	mcurses::optional<char> opt4{cond_f, c_r};
+	mcurses::Optional<char> opt4{cond_f, c_r};
 	EXPECT_FALSE(bool(opt4));
 	
-	mcurses::optional<char> opt5{cond_t, c_r};
+	mcurses::Optional<char> opt5{cond_t, c_r};
 	EXPECT_TRUE(bool(opt5));
 	EXPECT_EQ('k', *opt5);
 }
 
 TEST(OptionalTest, CopyConstructor)
 {
-	mcurses::optional<int> opt1{7};
-	mcurses::optional<int> opt2{opt1};
+	mcurses::Optional<int> opt1{7};
+	mcurses::Optional<int> opt2{opt1};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(7, *opt2);
 
-	mcurses::optional<double> opt3{};
-	mcurses::optional<double> opt4{opt3};
+	mcurses::Optional<double> opt3{};
+	mcurses::Optional<double> opt4{opt3};
 	EXPECT_FALSE(bool(opt4));
 	EXPECT_EQ(nullptr, opt4.get_ptr());
 }
 
 TEST(OptionalTest, MoveConstructor)
 {
-	mcurses::optional<int> opt1{9};
+	mcurses::Optional<int> opt1{9};
 	int* ip = opt1.get_ptr();
-	mcurses::optional<int> opt2{std::move(opt1)};
+	mcurses::Optional<int> opt2{std::move(opt1)};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(9, *opt2);
 	EXPECT_EQ(ip, opt2.get_ptr());
@@ -108,61 +109,61 @@ TEST(OptionalTest, MoveConstructor)
 	EXPECT_FALSE(bool(opt1));
 	EXPECT_EQ(nullptr, opt1.get_ptr());
 
-	mcurses::optional<int> opt3{mcurses::optional<int>{-5}};
+	mcurses::Optional<int> opt3{mcurses::Optional<int>{-5}};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ(-5, *opt3);
 
-	mcurses::optional<int> opt4{mcurses::optional<int>{mcurses::none}};
+	mcurses::Optional<int> opt4{mcurses::Optional<int>{mcurses::none}};
 	EXPECT_FALSE(bool(opt4));
 
-	mcurses::optional<double> opt5{};
-	mcurses::optional<double> opt6{std::move(opt5)};
+	mcurses::Optional<double> opt5{};
+	mcurses::Optional<double> opt6{std::move(opt5)};
 	EXPECT_FALSE(bool(opt6));
 	EXPECT_EQ(nullptr, opt6.get_ptr());
 
-	mcurses::optional<double> opt7{mcurses::optional<double>{}};
+	mcurses::Optional<double> opt7{mcurses::Optional<double>{}};
 	EXPECT_FALSE(bool(opt7));
 	EXPECT_EQ(nullptr, opt7.get_ptr());
 }
 
 TEST(OptionalTest, FromConvertibleTypeCopyConstructor)
 {
-	mcurses::optional<int> opt_int{7};
-	mcurses::optional<double> opt_dbl{opt_int};
+	mcurses::Optional<int> opt_int{7};
+	mcurses::Optional<double> opt_dbl{opt_int};
 
 	ASSERT_TRUE(bool(opt_dbl));
 	EXPECT_DOUBLE_EQ(7, *opt_dbl);
 
-	mcurses::optional<const char*> opt_c_str{"Hello"};
-	mcurses::optional<std::string> opt_string{opt_c_str};
+	mcurses::Optional<const char*> opt_c_str{"Hello"};
+	mcurses::Optional<std::string> opt_string{opt_c_str};
 
 	ASSERT_TRUE(bool(opt_string));
 	EXPECT_EQ("Hello", *opt_string);
 
-	mcurses::optional<double> opt_dbl2{};
-	mcurses::optional<int> opt_int2{opt_dbl2};
+	mcurses::Optional<double> opt_dbl2{};
+	mcurses::Optional<int> opt_int2{opt_dbl2};
 	EXPECT_FALSE(bool(opt_int2));
 	EXPECT_EQ(nullptr, opt_int2.get_ptr());
 }
 
 TEST(OptionalTest, FromConvertibleTypeMoveConstructor)
 {
-	mcurses::optional<int> opt_int{2};
-	mcurses::optional<double> opt_dbl{std::move(opt_int)};
+	mcurses::Optional<int> opt_int{2};
+	mcurses::Optional<double> opt_dbl{std::move(opt_int)};
 	ASSERT_TRUE(bool(opt_dbl));
 	EXPECT_DOUBLE_EQ(2, *opt_dbl);
 
 	EXPECT_FALSE(bool(opt_int));
 	EXPECT_EQ(nullptr, opt_int.get_ptr());
 
-	mcurses::optional<double> opt_dbl2{};
-	mcurses::optional<int> opt_int2{opt_dbl2};
+	mcurses::Optional<double> opt_dbl2{};
+	mcurses::Optional<int> opt_int2{opt_dbl2};
 	EXPECT_FALSE(bool(opt_int2));
 	EXPECT_EQ(nullptr, opt_int2.get_ptr());
 	EXPECT_EQ(nullptr, opt_dbl2.get_ptr());
 
-	mcurses::optional<const char*> opt_c_str{"Hello"};
-	mcurses::optional<std::string> opt_string{std::move(opt_c_str)};
+	mcurses::Optional<const char*> opt_c_str{"Hello"};
+	mcurses::Optional<std::string> opt_string{std::move(opt_c_str)};
 
 	ASSERT_TRUE(bool(opt_string));
 	EXPECT_EQ("Hello", *opt_string);
@@ -172,7 +173,7 @@ TEST(OptionalTest, FromConvertibleTypeMoveConstructor)
 
 TEST(OptionalTest, NoneAssignementOperator)
 {
-	mcurses::optional<int> opt{8};
+	mcurses::Optional<int> opt{8};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(8, *opt);
 
@@ -183,7 +184,7 @@ TEST(OptionalTest, NoneAssignementOperator)
 
 TEST(OptionalTest, LValueTAssignmentOperator)
 {
-	mcurses::optional<int> opt{-77};
+	mcurses::Optional<int> opt{-77};
 	int i = 45;
 	opt = i;
 	ASSERT_TRUE(bool(opt));
@@ -198,12 +199,12 @@ TEST(OptionalTest, LValueTAssignmentOperator)
 
 TEST(OptionalTest, RValueTAssignmentOperator)
 {
-	mcurses::optional<int> opt1{};
+	mcurses::Optional<int> opt1{};
 	opt1 = 99;
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(99, *opt1);
 
-	mcurses::optional<int> opt2{-77};
+	mcurses::Optional<int> opt2{-77};
 	opt2 = 88;
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(88, *opt2);
@@ -212,18 +213,18 @@ TEST(OptionalTest, RValueTAssignmentOperator)
 
 TEST(OptionalTest, CopyAssignmentOperator)
 {
-	mcurses::optional<int> opt1{99};
-	mcurses::optional<int> opt2{7};
+	mcurses::Optional<int> opt1{99};
+	mcurses::Optional<int> opt2{7};
 
 	opt1 = opt2;
 
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(7, *opt1);
 
-	mcurses::optional<int> opt3{0};
+	mcurses::Optional<int> opt3{0};
 	EXPECT_EQ(0, *(opt2 = opt3));
 
-	mcurses::optional<int> opt_empty{};
+	mcurses::Optional<int> opt_empty{};
 	opt1 = opt_empty;
 
 	EXPECT_FALSE(bool(opt1));
@@ -232,8 +233,8 @@ TEST(OptionalTest, CopyAssignmentOperator)
 
 TEST(OptionalTest, MoveAssignmentOperator)
 {
-	mcurses::optional<int> opt1{5};
-	mcurses::optional<int> opt2{};
+	mcurses::Optional<int> opt1{5};
+	mcurses::Optional<int> opt2{};
 
 	opt2 = std::move(opt1);
 
@@ -242,8 +243,8 @@ TEST(OptionalTest, MoveAssignmentOperator)
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(5, *opt2);
 
-	mcurses::optional<int> opt3{};
-	opt3 = mcurses::optional<int>{9};
+	mcurses::Optional<int> opt3{};
+	opt3 = mcurses::Optional<int>{9};
 
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ(9, *opt3);
@@ -251,8 +252,8 @@ TEST(OptionalTest, MoveAssignmentOperator)
 
 TEST(OptionalTest, ConversionCopyAssignmentConstructor)
 {
-	mcurses::optional<int> opt_int{7};
-	mcurses::optional<double> opt_dbl{10.0};
+	mcurses::Optional<int> opt_int{7};
+	mcurses::Optional<double> opt_dbl{10.0};
 
 	opt_dbl = opt_int;
 
@@ -261,8 +262,8 @@ TEST(OptionalTest, ConversionCopyAssignmentConstructor)
 	ASSERT_TRUE(bool(opt_int));
 	EXPECT_EQ(7, *opt_int);
 
-	mcurses::optional<const char*> opt_c_str{"Hello"};
-	mcurses::optional<std::string> opt_string{"World!"};
+	mcurses::Optional<const char*> opt_c_str{"Hello"};
+	mcurses::Optional<std::string> opt_string{"World!"};
 
 	opt_string = opt_c_str;
 
@@ -271,11 +272,11 @@ TEST(OptionalTest, ConversionCopyAssignmentConstructor)
 	ASSERT_TRUE(bool(opt_c_str));
 	EXPECT_EQ("Hello", *opt_c_str);
 
-	mcurses::optional<long int> opt_long{4321};
+	mcurses::Optional<long int> opt_long{4321};
 	EXPECT_EQ(7, *(opt_long = opt_int));
 
-	mcurses::optional<int> opt_empty{};
-	mcurses::optional<double> opt_dbl2{8};
+	mcurses::Optional<int> opt_empty{};
+	mcurses::Optional<double> opt_dbl2{8};
 
 	opt_dbl2 = opt_empty;
 
@@ -285,8 +286,8 @@ TEST(OptionalTest, ConversionCopyAssignmentConstructor)
 
 TEST(OptionalTest, ConversionMoveAssignmentOperator)
 {
-	mcurses::optional<int> opt_int{6};
-	mcurses::optional<double> opt_dbl{8.4};
+	mcurses::Optional<int> opt_int{6};
+	mcurses::Optional<double> opt_dbl{8.4};
 
 	opt_dbl = std::move(opt_int);
 
@@ -295,12 +296,12 @@ TEST(OptionalTest, ConversionMoveAssignmentOperator)
 	EXPECT_FALSE(bool(opt_int));
 	EXPECT_EQ(nullptr, opt_int.get_ptr());
 
-	opt_dbl = mcurses::optional<int>{99};
+	opt_dbl = mcurses::Optional<int>{99};
 
 	ASSERT_TRUE(bool(opt_dbl));
 	EXPECT_DOUBLE_EQ(99, *opt_dbl);
 
-	opt_dbl = mcurses::optional<int>{};
+	opt_dbl = mcurses::Optional<int>{};
 
 	EXPECT_FALSE(bool(opt_dbl));
 	EXPECT_EQ(nullptr, opt_dbl.get_ptr());
@@ -308,13 +309,13 @@ TEST(OptionalTest, ConversionMoveAssignmentOperator)
 
 TEST(OptionalTest, Emplace)
 {
-	mcurses::optional<int> opt1{};
+	mcurses::Optional<int> opt1{};
 	opt1.emplace(6);
 
 	ASSERT_TRUE(bool(opt1));
 	EXPECT_EQ(6, *opt1);
 
-	mcurses::optional<std::string> opt2{};
+	mcurses::Optional<std::string> opt2{};
 	opt2.emplace(3, 'h');
 
 	ASSERT_TRUE(bool(opt2));
@@ -332,14 +333,14 @@ TEST(OptionalTest, Emplace)
 
 TEST(OptionalTest, ConstGet)
 {
-	const mcurses::optional<int> opt{9};
+	const mcurses::Optional<int> opt{9};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(9, opt.get());
 }
 
 TEST(OptionalTest, Get)
 {
-	mcurses::optional<int> opt{7};
+	mcurses::Optional<int> opt{7};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(7, opt.get());
 
@@ -350,14 +351,14 @@ TEST(OptionalTest, Get)
 
 TEST(OptionalTest, ConstArrowOperator)
 {
-	const mcurses::optional<std::string> opt{"Hello, World!"};
+	const mcurses::Optional<std::string> opt{"Hello, World!"};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(13, opt->size());
 }
 
 TEST(OptionalTest, ArrowOperator)
 {
-	mcurses::optional<std::string> opt{"Hello"};
+	mcurses::Optional<std::string> opt{"Hello"};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(5, opt->size());
 	opt->append(", World!");
@@ -366,18 +367,18 @@ TEST(OptionalTest, ArrowOperator)
 
 TEST(OptionalTest, ConstLValueDereferenceOperator)
 {
-	const mcurses::optional<int> opt_int{88};
+	const mcurses::Optional<int> opt_int{88};
 	ASSERT_TRUE(bool(opt_int));
 	EXPECT_EQ(88, *opt_int);
 
-	const mcurses::optional<std::string> opt_string{"Hello!"};
+	const mcurses::Optional<std::string> opt_string{"Hello!"};
 	ASSERT_TRUE(bool(opt_string));
 	EXPECT_EQ(6, (*opt_string).size());
 }
 
 TEST(OptionalTest, LValueDereferenceOperator)
 {
-	mcurses::optional<std::string> opt_string{"Hello"};
+	mcurses::Optional<std::string> opt_string{"Hello"};
 	ASSERT_TRUE(bool(opt_string));
 	EXPECT_EQ(5, (*opt_string).size());
 
@@ -388,10 +389,10 @@ TEST(OptionalTest, LValueDereferenceOperator)
 
 TEST(OptionalTest, RValueDereferenceOperator)
 {
-	EXPECT_EQ(6, (*mcurses::optional<std::string>{"Hello!"}).size());
-	EXPECT_EQ(77 , *mcurses::optional<int>{77});
+	EXPECT_EQ(6, (*mcurses::Optional<std::string>{"Hello!"}).size());
+	EXPECT_EQ(77 , *mcurses::Optional<int>{77});
 
-	mcurses::optional<std::string> opt{"Hello, World!"};
+	mcurses::Optional<std::string> opt{"Hello, World!"};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ("Hello, World!", *std::move(opt));
 	// EXPECT_EQ(0, opt->size()); // seg-fault
@@ -399,10 +400,10 @@ TEST(OptionalTest, RValueDereferenceOperator)
 
 TEST(OptionalTest, ConstLValueValueMethod)
 {
-	const mcurses::optional<int> opt1{};
-	EXPECT_THROW(opt1.value(), mcurses::bad_optional_access);
+	const mcurses::Optional<int> opt1{};
+	EXPECT_THROW(opt1.value(), mcurses::Bad_optional_access);
 
-	const mcurses::optional<int> opt2{8};
+	const mcurses::Optional<int> opt2{8};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_NO_THROW(opt2.value());
 	EXPECT_EQ(8, opt2.value());
@@ -410,15 +411,15 @@ TEST(OptionalTest, ConstLValueValueMethod)
 
 TEST(OptionalTest, LValueValueMethod)
 {
-	mcurses::optional<int> opt1{};
-	EXPECT_THROW(opt1.value(), mcurses::bad_optional_access);
+	mcurses::Optional<int> opt1{};
+	EXPECT_THROW(opt1.value(), mcurses::Bad_optional_access);
 
-	mcurses::optional<int> opt2{8};
+	mcurses::Optional<int> opt2{8};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_NO_THROW(opt2.value());
 	EXPECT_EQ(8, opt2.value());
 
-	mcurses::optional<std::string> opt_string{"Hello"};
+	mcurses::Optional<std::string> opt_string{"Hello"};
 	opt_string.value().append(", World!");
 	ASSERT_TRUE(bool(opt_string));
 	EXPECT_EQ("Hello, World!", *opt_string);
@@ -426,35 +427,31 @@ TEST(OptionalTest, LValueValueMethod)
 
 TEST(OptionalTest, RValueValueMethod)
 {
-	mcurses::optional<int> opt1{};
-	EXPECT_THROW(std::move(opt1).value(), mcurses::bad_optional_access);
+	mcurses::Optional<int> opt1{};
+	EXPECT_THROW(std::move(opt1).value(), mcurses::Bad_optional_access);
 	EXPECT_FALSE(bool(opt1));
 	EXPECT_EQ(nullptr, opt1.get_ptr());
 
-	mcurses::optional<int> opt2{8};
+	mcurses::Optional<int> opt2{8};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_NO_THROW(std::move(opt2).value());
-	EXPECT_FALSE(bool(opt2));
-	EXPECT_EQ(nullptr, opt2.get_ptr());
 
-	mcurses::optional<int> opt3{10};
+	mcurses::Optional<int> opt3{10};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ(10, std::move(opt3).value());
-	EXPECT_FALSE(bool(opt3));
-	EXPECT_EQ(nullptr, opt3.get_ptr());
 
-	EXPECT_EQ(6, (mcurses::optional<int>{6}).value());
-	EXPECT_NO_THROW((mcurses::optional<int>{6}).value());
-	EXPECT_THROW((mcurses::optional<int>{}).value(), mcurses::bad_optional_access);
+	EXPECT_EQ(6, (mcurses::Optional<int>{6}).value());
+	EXPECT_NO_THROW((mcurses::Optional<int>{6}).value());
+	EXPECT_THROW((mcurses::Optional<int>{}).value(), mcurses::Bad_optional_access);
 }
 
 TEST(OptionalTest, ConstLValueValueOr)
 {
-	mcurses::optional<int> opt{8};
+	mcurses::Optional<int> opt{8};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_DOUBLE_EQ(8, opt.value_or(7.2));
 
-	mcurses::optional<int> opt_empty{};
+	mcurses::Optional<int> opt_empty{};
 	EXPECT_FALSE(bool(opt_empty));
 	int i = 32;
 	EXPECT_EQ(i, opt_empty.value_or(i));
@@ -464,33 +461,29 @@ TEST(OptionalTest, ConstLValueValueOr)
 
 TEST(OptionalTest, RValueValueOr)
 {
-	mcurses::optional<int> opt1{};
+	mcurses::Optional<int> opt1{};
 	double d = 9.3;
 	EXPECT_EQ(9, std::move(opt1).value_or(d));
 	EXPECT_FALSE(bool(opt1));
 	EXPECT_EQ(nullptr, opt1.get_ptr());
 
-	mcurses::optional<int> opt2{8};
+	mcurses::Optional<int> opt2{8};
 	ASSERT_TRUE(bool(opt2));
 	EXPECT_EQ(8, std::move(opt2).value_or(9.3));
-	EXPECT_FALSE(bool(opt2));
-	EXPECT_EQ(nullptr, opt2.get_ptr());
 
-	mcurses::optional<int> opt3{10};
+	mcurses::Optional<int> opt3{10};
 	ASSERT_TRUE(bool(opt3));
 	EXPECT_EQ(10, std::move(opt3).value_or(843));
-	EXPECT_FALSE(bool(opt3));
-	EXPECT_EQ(nullptr, opt3.get_ptr());
 
-	EXPECT_EQ(6, (mcurses::optional<int>{6}).value_or(99));
-	EXPECT_EQ(99, (mcurses::optional<int>{}).value_or(99));
+	EXPECT_EQ(6, (mcurses::Optional<int>{6}).value_or(99));
+	EXPECT_EQ(99, (mcurses::Optional<int>{}).value_or(99));
 }
 
 double f() {return 7.7;}
 
 TEST(OptionalTest, ConstLValueValueOrEval)
 {
-	mcurses::optional<int> opt{5};
+	mcurses::Optional<int> opt{5};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(5, opt.value_or_eval([](){return 8;}));
 
@@ -505,28 +498,26 @@ TEST(OptionalTest, ConstLValueValueOrEval)
 
 TEST(OptionalTest, RValueValueOrEval)
 {
-	EXPECT_EQ(3, (mcurses::optional<int>{3}).value_or_eval([](){return 8;}));
+	EXPECT_EQ(3, (mcurses::Optional<int>{3}).value_or_eval([](){return 8;}));
 	
-	mcurses::optional<int> opt1{};
+	mcurses::Optional<int> opt1{};
 	EXPECT_EQ(2, opt1.value_or_eval([](){return 2;}));
 	EXPECT_FALSE(bool(opt1));
 	EXPECT_EQ(nullptr, opt1.get_ptr());
 
-	mcurses::optional<int> opt2{88};
+	mcurses::Optional<int> opt2{88};
 	EXPECT_EQ(88, std::move(opt2).value_or_eval([](){return 3;}));
-	EXPECT_FALSE(bool(opt2));
-	EXPECT_EQ(nullptr, opt2.get_ptr());
 }
 
 TEST(OptionalTest, ConstGetPtr)
 {
-	const mcurses::optional<std::string> opt{"Hello!"};
+	const mcurses::Optional<std::string> opt{"Hello!"};
 	EXPECT_EQ("Hello!", *(opt.get_ptr()));
 }
 
 TEST(OptionalTest, GetPtr)
 {
-	mcurses::optional<std::string> opt{"Hello"};
+	mcurses::Optional<std::string> opt{"Hello"};
 	EXPECT_EQ("Hello", *(opt.get_ptr()));
 	opt.get_ptr()->append(", World!");
 	EXPECT_EQ("Hello, World!", *(opt.get_ptr()));
@@ -534,62 +525,62 @@ TEST(OptionalTest, GetPtr)
 
 TEST(OptionalTest, OperatorBool)
 {
-	const mcurses::optional<int> opt1{8};
+	const mcurses::Optional<int> opt1{8};
 	EXPECT_TRUE(bool(opt1));
 
-	const mcurses::optional<int> opt2{};
+	const mcurses::Optional<int> opt2{};
 	EXPECT_FALSE(bool(opt2));
 
-	mcurses::optional<int> opt3{8};
+	mcurses::Optional<int> opt3{8};
 	EXPECT_TRUE(bool(opt3));
 
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt4{};
 	EXPECT_FALSE(bool(opt4));
 
-	EXPECT_TRUE(bool(mcurses::optional<int>{4}));
-	EXPECT_FALSE(bool(mcurses::optional<int>{}));
-	const mcurses::optional<int> opt5{4};
+	EXPECT_TRUE(bool(mcurses::Optional<int>{4}));
+	EXPECT_FALSE(bool(mcurses::Optional<int>{}));
+	const mcurses::Optional<int> opt5{4};
 	EXPECT_TRUE(bool(std::move(opt5)));
-	const mcurses::optional<int> opt6{};
+	const mcurses::Optional<int> opt6{};
 	EXPECT_FALSE(bool(std::move(opt6)));
 }
 
 TEST(OptionalTest, OperatorNotEqual)
 {
-	const mcurses::optional<int> opt1{8};
+	const mcurses::Optional<int> opt1{8};
 	EXPECT_FALSE(!opt1);
 
-	const mcurses::optional<int> opt2{};
+	const mcurses::Optional<int> opt2{};
 	EXPECT_TRUE(!opt2);
 
-	mcurses::optional<int> opt3{8};
+	mcurses::Optional<int> opt3{8};
 	EXPECT_FALSE(!opt3);
 
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt4{};
 	EXPECT_TRUE(!opt4);
 
-	EXPECT_FALSE(!mcurses::optional<int>{4});
-	EXPECT_TRUE(!mcurses::optional<int>{});
-	const mcurses::optional<int> opt5{4};
+	EXPECT_FALSE(!mcurses::Optional<int>{4});
+	EXPECT_TRUE(!mcurses::Optional<int>{});
+	const mcurses::Optional<int> opt5{4};
 	EXPECT_FALSE(!std::move(opt5));
-	const mcurses::optional<int> opt6{};
+	const mcurses::Optional<int> opt6{};
 	EXPECT_TRUE(!std::move(opt6));
 }
 
 TEST(OptionalTest, OperatorEqualTo)
 {
-	mcurses::optional<int> opt1{5};
-	mcurses::optional<int> opt2{5};
+	mcurses::Optional<int> opt1{5};
+	mcurses::Optional<int> opt2{5};
 
 	EXPECT_TRUE(opt1 == opt2);
 
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
 
 	EXPECT_TRUE(opt3 == opt4);
 
-	mcurses::optional<int> opt5{};
-	mcurses::optional<int> opt6{8};
+	mcurses::Optional<int> opt5{};
+	mcurses::Optional<int> opt6{8};
 
 	EXPECT_FALSE(opt5 == opt6);
 	EXPECT_FALSE(opt6 == opt5);
@@ -602,18 +593,18 @@ TEST(OptionalTest, OperatorEqualTo)
 
 TEST(OptionalTest, OperatorNotEqualTo)
 {
-	mcurses::optional<int> opt1{5};
-	mcurses::optional<int> opt2{5};
+	mcurses::Optional<int> opt1{5};
+	mcurses::Optional<int> opt2{5};
 
 	EXPECT_FALSE(opt1 != opt2);
 
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
 
 	EXPECT_FALSE(opt3 != opt4);
 
-	mcurses::optional<int> opt5{};
-	mcurses::optional<int> opt6{8};
+	mcurses::Optional<int> opt5{};
+	mcurses::Optional<int> opt6{8};
 
 	EXPECT_TRUE(opt5 != opt6);
 	EXPECT_TRUE(opt6 != opt5);
@@ -626,10 +617,10 @@ TEST(OptionalTest, OperatorNotEqualTo)
 
 TEST(OptionalTest, OperatorLessThan)
 {
-	mcurses::optional<int> opt1{1};
-	mcurses::optional<int> opt2{2};
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt1{1};
+	mcurses::Optional<int> opt2{2};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
 
 	EXPECT_TRUE(opt1 < opt2);
 	EXPECT_FALSE(opt2 < opt1);
@@ -644,10 +635,10 @@ TEST(OptionalTest, OperatorLessThan)
 
 TEST(OptionalTest, OperatorGreaterThan)
 {
-	mcurses::optional<int> opt1{1};
-	mcurses::optional<int> opt2{2};
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
+	mcurses::Optional<int> opt1{1};
+	mcurses::Optional<int> opt2{2};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
 
 	EXPECT_FALSE(opt1 > opt2);
 	EXPECT_TRUE(opt2 > opt1);
@@ -662,11 +653,11 @@ TEST(OptionalTest, OperatorGreaterThan)
 
 TEST(OptionalTest, OperatorLessThanOrEqualTo)
 {
-	mcurses::optional<int> opt1{1};
-	mcurses::optional<int> opt2{2};
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
-	mcurses::optional<int> opt5{2};
+	mcurses::Optional<int> opt1{1};
+	mcurses::Optional<int> opt2{2};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
+	mcurses::Optional<int> opt5{2};
 
 	EXPECT_TRUE(opt1 <= opt2);
 	EXPECT_FALSE(opt2 <= opt1);
@@ -683,11 +674,11 @@ TEST(OptionalTest, OperatorLessThanOrEqualTo)
 
 TEST(OptionalTest, OperatorGreaterThanOrEqualTo)
 {
-	mcurses::optional<int> opt1{1};
-	mcurses::optional<int> opt2{2};
-	mcurses::optional<int> opt3{};
-	mcurses::optional<int> opt4{};
-	mcurses::optional<int> opt5{2};
+	mcurses::Optional<int> opt1{1};
+	mcurses::Optional<int> opt2{2};
+	mcurses::Optional<int> opt3{};
+	mcurses::Optional<int> opt4{};
+	mcurses::Optional<int> opt5{2};
 
 	EXPECT_FALSE(opt1 >= opt2);
 	EXPECT_TRUE(opt2 >= opt1);
@@ -704,8 +695,8 @@ TEST(OptionalTest, OperatorGreaterThanOrEqualTo)
 
 TEST(OptionalTest, OperatorEqualToNoneT)
 {
-	mcurses::optional<int> opt1{7};
-	mcurses::optional<int> opt2{};
+	mcurses::Optional<int> opt1{7};
+	mcurses::Optional<int> opt2{};
 
 	EXPECT_FALSE(opt1 == mcurses::none);
 	EXPECT_TRUE(opt2 == mcurses::none);
@@ -722,8 +713,8 @@ TEST(OptionalTest, OperatorEqualToNoneT)
 
 TEST(OptionalTest, OperatorNotEqualToNoneT)
 {
-	mcurses::optional<int> opt1{7};
-	mcurses::optional<int> opt2{};
+	mcurses::Optional<int> opt1{7};
+	mcurses::Optional<int> opt2{};
 
 	EXPECT_TRUE(opt1 != mcurses::none);
 	EXPECT_FALSE(opt2 != mcurses::none);
@@ -738,36 +729,10 @@ TEST(OptionalTest, OperatorNotEqualToNoneT)
 	EXPECT_FALSE(mcurses::none != opt1);
 }
 
-TEST(OptionalTest, MakeOptional)
-{
-	auto opt1 = mcurses::make_optional(7);
-	ASSERT_TRUE(bool(opt1));
-	EXPECT_EQ(7, *opt1);
-	EXPECT_TRUE(opt1 == mcurses::make_optional(7));
-
-	auto opt2 = mcurses::make_optional('k');
-	ASSERT_TRUE(bool(opt2));
-	EXPECT_EQ('k', *opt2);
-	EXPECT_TRUE(opt2 == mcurses::make_optional('k'));
-}
-
-TEST(OptionalTest, ConditionalMakeOptional)
-{
-	auto opt1 = mcurses::make_optional(true, 7);
-	ASSERT_TRUE(bool(opt1));
-	EXPECT_EQ(7, *opt1);
-	EXPECT_TRUE(opt1 == mcurses::make_optional(7));
-
-	auto opt2 = mcurses::make_optional(false, 'k');
-	EXPECT_FALSE(bool(opt2));
-	EXPECT_EQ(nullptr, opt2.get_ptr());
-	EXPECT_TRUE(opt2 == mcurses::none);
-}
-
 TEST(OptionalTest, GetConstFreeFunction)
 {
 	int i = 7;
-	const mcurses::optional<int> opt(i);
+	const mcurses::Optional<int> opt(i);
 
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(7, get(opt));
@@ -776,7 +741,7 @@ TEST(OptionalTest, GetConstFreeFunction)
 TEST(OptionalTest, GetFreeFunction)
 {
 	int i = 7;
-	mcurses::optional<int> opt(i);
+	mcurses::Optional<int> opt(i);
 
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(7, get(opt));
@@ -788,14 +753,14 @@ TEST(OptionalTest, GetFreeFunction)
 
 TEST(OptionalTest, ConstGetFromPointerFreeFunction)
 {
-	const mcurses::optional<int> opt{4};
+	const mcurses::Optional<int> opt{4};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(4, *(get(&opt)));
 }
 
 TEST(OptionalTest, GetFromPointerFreeFunction)
 {
-	mcurses::optional<int> opt{4};
+	mcurses::Optional<int> opt{4};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(4, *(get(&opt)));
 
@@ -805,14 +770,14 @@ TEST(OptionalTest, GetFromPointerFreeFunction)
 
 TEST(OptionalTest, ConstGetPointerFreeFunction)
 {
-	const mcurses::optional<int> opt{8};
+	const mcurses::Optional<int> opt{8};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(8, *get_pointer(opt));
 }
 
 TEST(OptionalTest, GetPointerFreeFunction)
 {
-	mcurses::optional<int> opt{8};
+	mcurses::Optional<int> opt{8};
 	ASSERT_TRUE(bool(opt));
 	EXPECT_EQ(8, *get_pointer(opt));
 
@@ -823,30 +788,31 @@ TEST(OptionalTest, GetPointerFreeFunction)
 
 TEST(OptionalTest, Swap)
 {
-	mcurses::optional<int> opt1{};
-	mcurses::optional<int> opt2{};
-	mcurses::optional<int> opt3{6};
-	mcurses::optional<int> opt4{32};
+    using std::swap;
+	mcurses::Optional<int> opt1{};
+	mcurses::Optional<int> opt2{};
+	mcurses::Optional<int> opt3{6};
+	mcurses::Optional<int> opt4{32};
 
-	mcurses::swap(opt1, opt2);
+	swap(opt1, opt2);
 	EXPECT_FALSE(bool(opt1));
 	EXPECT_FALSE(bool(opt2));
 	EXPECT_EQ(nullptr, opt1.get_ptr());
 	EXPECT_EQ(nullptr, opt2.get_ptr());
 
-	mcurses::swap(opt3, opt4);
+	swap(opt3, opt4);
 	EXPECT_TRUE(bool(opt3));
 	EXPECT_TRUE(bool(opt3));
 	EXPECT_EQ(32, opt3.get());
 	EXPECT_EQ(6, opt4.get());
 
-	mcurses::swap(opt3, opt2);
+	swap(opt3, opt2);
 	EXPECT_FALSE(bool(opt3));
 	EXPECT_TRUE(bool(opt2));
 	EXPECT_EQ(32, opt2.get());
 	EXPECT_EQ(nullptr, opt3.get_ptr());
 
-	mcurses::swap(opt1, opt4);
+	swap(opt1, opt4);
 	EXPECT_FALSE(bool(opt4));
 	EXPECT_TRUE(bool(opt1));
 	EXPECT_EQ(6, opt1.get());
