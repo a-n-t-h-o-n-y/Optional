@@ -4,5 +4,5 @@
 
 TEST(NoneTest, BoolConversion)
 {
-	EXPECT_FALSE(mcurses::none);
+	EXPECT_FALSE(opt::none);
 }

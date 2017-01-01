@@ -5,7 +5,7 @@
 
 #include <stdexcept>
 
-namespace mcurses {
+namespace opt {
 
 /// Exception for use when an empty Optional<T> object is accessed.
 class Bad_optional_access : public std::logic_error {
@@ -14,6 +14,6 @@ class Bad_optional_access : public std::logic_error {
     explicit Bad_optional_access(const char* what) : std::logic_error(what) {}
 };
 
-}  // namespace mcurses
+}  // namespace opt
 
 #endif  // BAD_OPTIONAL_ACCESS_HPP

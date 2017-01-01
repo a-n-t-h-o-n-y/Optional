@@ -3,10 +3,10 @@
 #ifndef NONE_HPP
 #define NONE_HPP
 
-/** \namespace mcurses
- *	MCurses Library wide namespace
+/** \namespace opt
+ *	Optional Library namespace
  */
-namespace mcurses {
+namespace opt {
 
 /// Represents 'no value', or null.
 class None_t {
@@ -18,6 +18,6 @@ class None_t {
 ///	\var none
 /// Convenience global None_t object.
 
-}  // namespace mcurses
+}  // namespace opt
 
 #endif  // NONE_HPP

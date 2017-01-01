@@ -7,7 +7,9 @@
 #include <string>
 #include <utility>
 
-using namespace mcurses;
+using opt::Optional;
+using opt::none;
+using opt::Bad_optional_access;
 
 TEST(OptionalTest, DefaultConstructor) {
     Optional<int> opt{};

@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace mcurses {
+namespace opt {
 
 /// \brief Wraps a type to provide an optional 'null', or empty state.
 ///
@@ -41,7 +41,7 @@ class Optional {
     /// \brief Constructs an uninitialized Optional.
     ///
     /// *this is _not_ initialized, T's default constrcutor is _not_ called.
-    /// \param n    Use mcurses::none provided in none.hpp.
+    /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
     Optional(None_t n) noexcept : value_ptr_{nullptr}, initialized_{false} {}
 
@@ -158,7 +158,7 @@ class Optional {
     ///
     /// Leaves *this in an uninitialized state. If *this was previously
     /// initialized, the held object is destroyed.
-    /// \param n    Use mcurses::none provided in none.hpp.
+    /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
     Optional& operator=(None_t n) noexcept {
         this->value_ptr_.reset(nullptr);
@@ -495,6 +495,6 @@ auto get_pointer(Optional<T>& opt) -> typename Optional<T>::pointer_type {
     return opt.get_ptr();
 }
 
-}  // namespace mcurses
+}  // namespace opt
 
 #endif  // OPTIONAL_HPP
