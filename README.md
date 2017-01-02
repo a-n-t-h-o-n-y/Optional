@@ -1,5 +1,5 @@
 ## Rundown
-A header only, C++14 implementation of the Boost::Optional API.
+A header only, C++14 implementation of the Boost::Optional library.
 
 Optional objects wrap any type and allow them to occupy a 'null' state. The
 status of the object can be queried with an explicit bool conversion. If true,
@@ -63,7 +63,7 @@ the bin/ directory.
 
 ## Contributions
 All help is welcome, add your contribution to this project by creating a pull
-request. Append your name to the [CONTRIBUTORS.txt](CONTRIBUTORS.txt) file as
+request. Append your name to the [CONTRIBUTORS.md](CONTRIBUTORS.md) file as
 well. Issues and questions can be directed to the GitHub issue tracker.
 
 ## License
