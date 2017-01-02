@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.12"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MCurses TUI Library: mcurses::bad_optional_access Class Reference</title>
+<title>MCurses TUI Library: opt::Bad_optional_access Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,40 +59,73 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacemcurses.html">mcurses</a></li><li class="navelem"><a class="el" href="classmcurses_1_1bad__optional__access.html">bad_optional_access</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceopt.html">opt</a></li><li class="navelem"><a class="el" href="classopt_1_1Bad__optional__access.html">Bad_optional_access</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classmcurses_1_1bad__optional__access-members.html">List of all members</a>  </div>
+<a href="classopt_1_1Bad__optional__access-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">mcurses::bad_optional_access Class Reference</div>  </div>
+<div class="title">opt::Bad_optional_access Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Exception for use when an empty Optional&lt;T&gt; object is accessed.  
+ <a href="classopt_1_1Bad__optional__access.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="bad__optional__access_8hpp_source.html">bad_optional_access.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for mcurses::bad_optional_access:</div>
+Inheritance diagram for opt::Bad_optional_access:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classmcurses_1_1bad__optional__access.png" usemap="#mcurses::bad_5Foptional_5Faccess_map" alt=""/>
-  <map id="mcurses::bad_5Foptional_5Faccess_map" name="mcurses::bad_optional_access_map">
+  <img src="classopt_1_1Bad__optional__access.png" usemap="#opt::Bad_5Foptional_5Faccess_map" alt=""/>
+  <map id="opt::Bad_5Foptional_5Faccess_map" name="opt::Bad_optional_access_map">
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad841fbf6af22c6781fb5954adaf05ee6"><td class="memItemLeft" align="right" valign="top"><a id="ad841fbf6af22c6781fb5954adaf05ee6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>bad_optional_access</b> (const std::string &amp;w)</td></tr>
-<tr class="separator:ad841fbf6af22c6781fb5954adaf05ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d77e247e57e228232afe6e27703dcd"><td class="memItemLeft" align="right" valign="top"><a id="a15d77e247e57e228232afe6e27703dcd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>bad_optional_access</b> (std::string &amp;&amp;w)</td></tr>
-<tr class="separator:a15d77e247e57e228232afe6e27703dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c452e08e0127cd1ec6df96a1bc0e6f0"><td class="memItemLeft" align="right" valign="top"><a id="a6c452e08e0127cd1ec6df96a1bc0e6f0"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const override  throw ()</td></tr>
-<tr class="separator:a6c452e08e0127cd1ec6df96a1bc0e6f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a228f06a2607b12c4b21487ebeb26a24b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classopt_1_1Bad__optional__access.html#a228f06a2607b12c4b21487ebeb26a24b">Bad_optional_access</a> (const char *what)</td></tr>
+<tr class="separator:a228f06a2607b12c4b21487ebeb26a24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Exception for use when an empty Optional&lt;T&gt; object is accessed. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a228f06a2607b12c4b21487ebeb26a24b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a228f06a2607b12c4b21487ebeb26a24b">&sect;&nbsp;</a></span>Bad_optional_access()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">opt::Bad_optional_access::Bad_optional_access </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>what</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">what</td><td>Used to identify the exception. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/anthony/Documents/C++/Projects/Optional/include/<a class="el" href="bad__optional__access_8hpp_source.html">bad_optional_access.hpp</a></li>
+<li>/home/anthony/Documents/C++/Projects/Optional_Library/include/<a class="el" href="bad__optional__access_8hpp_source.html">bad_optional_access.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

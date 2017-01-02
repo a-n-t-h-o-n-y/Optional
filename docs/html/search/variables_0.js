@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['none',['none',['../namespacemcurses.html#a3fd18c73e6d453dcdfdd1fcdaf9bb0d7',1,'mcurses']]]
+  ['none',['none',['../namespaceopt.html#a5f705492ffd271ff5573f3c559384f17',1,'opt']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mcurses',['mcurses',['../namespacemcurses.html',1,'']]]
+  ['opt',['opt',['../namespaceopt.html',1,'']]]
 ];

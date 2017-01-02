@@ -12,11 +12,13 @@ var menudata={children:[
 {text:'Class Hierarchy',url:'hierarchy.html'},
 {text:'Class Members',url:'functions.html',children:[
 {text:'All',url:'functions.html',children:[
+{text:'b',url:'functions.html#index_b'},
 {text:'e',url:'functions.html#index_e'},
 {text:'g',url:'functions.html#index_g'},
 {text:'o',url:'functions.html#index_o'},
 {text:'v',url:'functions.html#index_v'}]},
 {text:'Functions',url:'functions_func.html',children:[
+{text:'b',url:'functions_func.html#index_b'},
 {text:'e',url:'functions_func.html#index_e'},
 {text:'g',url:'functions_func.html#index_g'},
 {text:'o',url:'functions_func.html#index_o'},

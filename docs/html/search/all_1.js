@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['emplace',['emplace',['../classmcurses_1_1Optional.html#ad61d5e9b20d4824e064f528772e9b805',1,'mcurses::Optional']]]
+  ['emplace',['emplace',['../classopt_1_1Optional.html#ab96711776bf9d990050ce96dcd42ff06',1,'opt::Optional']]]
 ];

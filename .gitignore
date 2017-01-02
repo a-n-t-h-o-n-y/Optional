@@ -1,8 +1,5 @@
 bin/*
 build/*
-doc/*
-!doc/Doxyfile
-!doc/images
 lib/*
 notes
 
