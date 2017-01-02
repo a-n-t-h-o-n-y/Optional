@@ -1,0 +1,250 @@
+\hypertarget{classmcurses_1_1optional}{}\section{mcurses\+:\+:optional$<$ T $>$ Class Template Reference}
+\label{classmcurses_1_1optional}\index{mcurses\+::optional$<$ T $>$@{mcurses\+::optional$<$ T $>$}}
+
+
+Wraps a type to provide an optional \textquotesingle{}null\textquotesingle{} or empty state.  
+
+
+
+
+{\ttfamily \#include $<$optional.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmcurses_1_1optional_a73fd96cc945d20d546fe3f8d8cbd1a25}{}\label{classmcurses_1_1optional_a73fd96cc945d20d546fe3f8d8cbd1a25} 
+typedef T {\bfseries value\+\_\+type}
+\item 
+\hypertarget{classmcurses_1_1optional_ace43a2dff3f04c99a85cbc7545547f3f}{}\label{classmcurses_1_1optional_ace43a2dff3f04c99a85cbc7545547f3f} 
+typedef T \& {\bfseries reference\+\_\+type}
+\item 
+\hypertarget{classmcurses_1_1optional_a67b19d29a91d7a1bd31bfdf2dc4cec1a}{}\label{classmcurses_1_1optional_a67b19d29a91d7a1bd31bfdf2dc4cec1a} 
+typedef const T \& {\bfseries reference\+\_\+const\+\_\+type}
+\item 
+\hypertarget{classmcurses_1_1optional_aa2f9a50572a42c02c6c06ee9b8eef286}{}\label{classmcurses_1_1optional_aa2f9a50572a42c02c6c06ee9b8eef286} 
+typedef T \&\& {\bfseries rval\+\_\+reference\+\_\+type}
+\item 
+\hypertarget{classmcurses_1_1optional_a5489fe0c966870126817af1789d6f143}{}\label{classmcurses_1_1optional_a5489fe0c966870126817af1789d6f143} 
+typedef T $\ast$ {\bfseries pointer\+\_\+type}
+\item 
+\hypertarget{classmcurses_1_1optional_a0e99aac87406a6a2706926b3dd528f20}{}\label{classmcurses_1_1optional_a0e99aac87406a6a2706926b3dd528f20} 
+typedef const T $\ast$ {\bfseries pointer\+\_\+const\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmcurses_1_1optional_ac8c51c997516ebd013030ee5ac475c2e}{}\label{classmcurses_1_1optional_ac8c51c997516ebd013030ee5ac475c2e} 
+{\bfseries optional} (\hyperlink{classmcurses_1_1None__t}{None\+\_\+t}) noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_a12bd45441ff0fd8a59815a62f7927710}{}\label{classmcurses_1_1optional_a12bd45441ff0fd8a59815a62f7927710} 
+{\bfseries optional} (const T \&value)
+\item 
+\hypertarget{classmcurses_1_1optional_ae3f463b7772ef06e04367a03f986995d}{}\label{classmcurses_1_1optional_ae3f463b7772ef06e04367a03f986995d} 
+{\bfseries optional} (T \&\&value)
+\item 
+\hypertarget{classmcurses_1_1optional_a19facb345a5ae4eec360fa8b78c82e1c}{}\label{classmcurses_1_1optional_a19facb345a5ae4eec360fa8b78c82e1c} 
+{\bfseries optional} (bool condition, const T \&value)
+\item 
+\hypertarget{classmcurses_1_1optional_a35497288a1efd5506f6be62862a38afe}{}\label{classmcurses_1_1optional_a35497288a1efd5506f6be62862a38afe} 
+{\bfseries optional} (const \hyperlink{classmcurses_1_1optional}{optional} \&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_aa7a974f08420860733f18590607c11f4}{}\label{classmcurses_1_1optional_aa7a974f08420860733f18590607c11f4} 
+{\bfseries optional} (\hyperlink{classmcurses_1_1optional}{optional} \&\&rhs) noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_a94ec88a7bf0640b7b2cf90506b14d569}{}\label{classmcurses_1_1optional_a94ec88a7bf0640b7b2cf90506b14d569} 
+{\footnotesize template$<$typename U $>$ }\\{\bfseries optional} (const \hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_a63a5387aa6c1cb3e6f1c21c928a12133}{}\label{classmcurses_1_1optional_a63a5387aa6c1cb3e6f1c21c928a12133} 
+{\footnotesize template$<$typename U $>$ }\\{\bfseries optional} (\hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&\&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_ae0a018ac2337c34d41288268c2fa5fe0}{}\label{classmcurses_1_1optional_ae0a018ac2337c34d41288268c2fa5fe0} 
+\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (\hyperlink{classmcurses_1_1None__t}{None\+\_\+t}) noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_a636035e6a854bb0093fb12373a876bf1}{}\label{classmcurses_1_1optional_a636035e6a854bb0093fb12373a876bf1} 
+\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (const T \&value)
+\item 
+\hypertarget{classmcurses_1_1optional_aa78883a564b27d0dfe7b9cb6942e4f4f}{}\label{classmcurses_1_1optional_aa78883a564b27d0dfe7b9cb6942e4f4f} 
+\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (T \&\&value)
+\item 
+\hypertarget{classmcurses_1_1optional_a11a6b4492251b945432ea9d5249153dd}{}\label{classmcurses_1_1optional_a11a6b4492251b945432ea9d5249153dd} 
+\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (const \hyperlink{classmcurses_1_1optional}{optional} \&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_a73b789bdc02066f3b4f6e3193517921a}{}\label{classmcurses_1_1optional_a73b789bdc02066f3b4f6e3193517921a} 
+\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (\hyperlink{classmcurses_1_1optional}{optional} \&\&rhs) noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_a086160caca323662510b8e93f188c45b}{}\label{classmcurses_1_1optional_a086160caca323662510b8e93f188c45b} 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (const \hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_acdf547561696fa58fa9691c26b069bd5}{}\label{classmcurses_1_1optional_acdf547561696fa58fa9691c26b069bd5} 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1optional}{optional} \& {\bfseries operator=} (\hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&\&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_a50d5f9a51f0c9cffa0047104a8a5b4dc}{}\label{classmcurses_1_1optional_a50d5f9a51f0c9cffa0047104a8a5b4dc} 
+{\footnotesize template$<$typename ... Args$>$ }\\void {\bfseries emplace} (Args \&\&... args)
+\item 
+\hypertarget{classmcurses_1_1optional_afec44c75b5b1c8d35ffc3bdb17b5f859}{}\label{classmcurses_1_1optional_afec44c75b5b1c8d35ffc3bdb17b5f859} 
+const T \& {\bfseries get} () const
+\item 
+\hypertarget{classmcurses_1_1optional_a018c8cd417bd662d49fcbd05a7dbc85f}{}\label{classmcurses_1_1optional_a018c8cd417bd662d49fcbd05a7dbc85f} 
+T \& {\bfseries get} ()
+\item 
+\hypertarget{classmcurses_1_1optional_a722f8a4dcd6c61f1dd4b1b8ee97a3e05}{}\label{classmcurses_1_1optional_a722f8a4dcd6c61f1dd4b1b8ee97a3e05} 
+const T $\ast$ {\bfseries operator-\/$>$} () const
+\item 
+\hypertarget{classmcurses_1_1optional_a9d3e7d2865316e8e3d8f7de8bb04b202}{}\label{classmcurses_1_1optional_a9d3e7d2865316e8e3d8f7de8bb04b202} 
+T $\ast$ {\bfseries operator-\/$>$} ()
+\item 
+\hypertarget{classmcurses_1_1optional_a332dc3ad9b937e8050262c50b2885ab4}{}\label{classmcurses_1_1optional_a332dc3ad9b937e8050262c50b2885ab4} 
+const T \& {\bfseries operator$\ast$} () const \&
+\item 
+\hypertarget{classmcurses_1_1optional_ab6b08ee1cc6bb974e6c591388aa6c35a}{}\label{classmcurses_1_1optional_ab6b08ee1cc6bb974e6c591388aa6c35a} 
+T \& {\bfseries operator$\ast$} () \&
+\item 
+\hypertarget{classmcurses_1_1optional_a8c7d42a78209f5f97d444909a4671256}{}\label{classmcurses_1_1optional_a8c7d42a78209f5f97d444909a4671256} 
+T \&\& {\bfseries operator$\ast$} () \&\&
+\item 
+\hypertarget{classmcurses_1_1optional_ad2173b9432206b435118438b35baf1a7}{}\label{classmcurses_1_1optional_ad2173b9432206b435118438b35baf1a7} 
+const T \& {\bfseries value} () const \&
+\item 
+\hypertarget{classmcurses_1_1optional_aa39c551be2b2cf291c6a0940cf4b10e4}{}\label{classmcurses_1_1optional_aa39c551be2b2cf291c6a0940cf4b10e4} 
+T \& {\bfseries value} () \&
+\item 
+\hypertarget{classmcurses_1_1optional_a14b3679cf514dcf105fd34b5d4f7f77d}{}\label{classmcurses_1_1optional_a14b3679cf514dcf105fd34b5d4f7f77d} 
+T \&\& {\bfseries value} () \&\&
+\item 
+{\footnotesize template$<$typename U $>$ }\\T \hyperlink{classmcurses_1_1optional_af11e22540ba65265838f589da4bca775}{value\+\_\+or} (U \&\&val) const \&
+\item 
+{\footnotesize template$<$typename U $>$ }\\T \hyperlink{classmcurses_1_1optional_a968ace3f586642b1ddc54520e8a1e64d}{value\+\_\+or} (U \&\&val) \&\&
+\item 
+{\footnotesize template$<$typename F $>$ }\\T \hyperlink{classmcurses_1_1optional_a10bd1d21490f5ad196e3cdaa75e8fe5e}{value\+\_\+or\+\_\+eval} (F func) const \&
+\item 
+{\footnotesize template$<$typename F $>$ }\\T \hyperlink{classmcurses_1_1optional_a05c4a39a77de6c38df1dc8e93716d1c1}{value\+\_\+or\+\_\+eval} (F func) \&\&
+\item 
+\hypertarget{classmcurses_1_1optional_a1896dc22cf6eab26af66de6c0617cf09}{}\label{classmcurses_1_1optional_a1896dc22cf6eab26af66de6c0617cf09} 
+const T $\ast$ {\bfseries get\+\_\+ptr} () const
+\item 
+\hypertarget{classmcurses_1_1optional_a3ec80c96fcf32503aa31055b2f15ec0a}{}\label{classmcurses_1_1optional_a3ec80c96fcf32503aa31055b2f15ec0a} 
+T $\ast$ {\bfseries get\+\_\+ptr} ()
+\item 
+\hypertarget{classmcurses_1_1optional_ad201c997a97e54db8c12f6db62a639d3}{}\label{classmcurses_1_1optional_ad201c997a97e54db8c12f6db62a639d3} 
+{\bfseries operator bool} () const noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_ae20826df69fbe919760e00f45f2a2b13}{}\label{classmcurses_1_1optional_ae20826df69fbe919760e00f45f2a2b13} 
+bool {\bfseries operator!} () const noexcept
+\item 
+\hypertarget{classmcurses_1_1optional_a13e4a4e6a551c8babfa8eb63ee3c521a}{}\label{classmcurses_1_1optional_a13e4a4e6a551c8babfa8eb63ee3c521a} 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1optional}{optional}$<$ T $>$ \& {\bfseries operator=} (const \hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&rhs)
+\item 
+\hypertarget{classmcurses_1_1optional_aeff9d68584f9c925dfe9cb06c152d49a}{}\label{classmcurses_1_1optional_aeff9d68584f9c925dfe9cb06c152d49a} 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1optional}{optional}$<$ T $>$ \& {\bfseries operator=} (\hyperlink{classmcurses_1_1optional}{optional}$<$ U $>$ \&\&rhs)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmcurses_1_1optional_aa756d67787488b1e2bba885ce4da6fe0}{}\label{classmcurses_1_1optional_aa756d67787488b1e2bba885ce4da6fe0} 
+{\footnotesize template$<$typename U $>$ }\\class {\bfseries optional}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class mcurses\+::optional$<$ T $>$}
+
+Wraps a type to provide an optional \textquotesingle{}null\textquotesingle{} or empty state. 
+
+A wrapped type is accessed by dereferencing an Optional object. Optional objects can be tested as a boolean for whether or not they contain a value. Useful when 0, -\/1, or default constructed does not suffice for \textquotesingle{}no value\textquotesingle{}.
+
+Typical usage\+: 
+\begin{DoxyCode}
+Optional<int> opt\_i\{5\};
+\textcolor{keywordflow}{if}(opt\_i) \{
+    foo(*opt\_i);
+\}
+\end{DoxyCode}
+ 
+
+\subsection{Member Function Documentation}
+\hypertarget{classmcurses_1_1optional_af11e22540ba65265838f589da4bca775}{}\label{classmcurses_1_1optional_af11e22540ba65265838f589da4bca775} 
+\index{mcurses\+::optional@{mcurses\+::optional}!value\+\_\+or@{value\+\_\+or}}
+\index{value\+\_\+or@{value\+\_\+or}!mcurses\+::optional@{mcurses\+::optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or()}{value\_or()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename U $>$ \\
+T \hyperlink{classmcurses_1_1optional}{mcurses\+::optional}$<$ T $>$\+::value\+\_\+or (\begin{DoxyParamCaption}\item[{U \&\&}]{val }\end{DoxyParamCaption}) const}
+
+Returns val if $\ast$this is uninitialized, otherwise returns the value stored in $\ast$this. Specialized for when $\ast$this is an lvalue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to be returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Either} & the value stored in $\ast$this, or val. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classmcurses_1_1optional_a968ace3f586642b1ddc54520e8a1e64d}{}\label{classmcurses_1_1optional_a968ace3f586642b1ddc54520e8a1e64d} 
+\index{mcurses\+::optional@{mcurses\+::optional}!value\+\_\+or@{value\+\_\+or}}
+\index{value\+\_\+or@{value\+\_\+or}!mcurses\+::optional@{mcurses\+::optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or()}{value\_or()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename U $>$ \\
+T \hyperlink{classmcurses_1_1optional}{mcurses\+::optional}$<$ T $>$\+::value\+\_\+or (\begin{DoxyParamCaption}\item[{U \&\&}]{val }\end{DoxyParamCaption})}
+
+Returns val if $\ast$this is uninitialized, otherwise returns the value stored in $\ast$this. Specialized for when $\ast$this is an rvalue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to be returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Either} & the value stored in $\ast$this, or val. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classmcurses_1_1optional_a10bd1d21490f5ad196e3cdaa75e8fe5e}{}\label{classmcurses_1_1optional_a10bd1d21490f5ad196e3cdaa75e8fe5e} 
+\index{mcurses\+::optional@{mcurses\+::optional}!value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}}
+\index{value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}!mcurses\+::optional@{mcurses\+::optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or\+\_\+eval()}{value\_or\_eval()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename F $>$ \\
+T \hyperlink{classmcurses_1_1optional}{mcurses\+::optional}$<$ T $>$\+::value\+\_\+or\+\_\+eval (\begin{DoxyParamCaption}\item[{F}]{func }\end{DoxyParamCaption}) const}
+
+Evaluates func and forwards its return value if $\ast$this is uninitialized, otherwise returns the value stoed in $\ast$this. Specialized for when $\ast$this is an lvalue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Function to be evaluated and returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Either} & the value stored in $\ast$this, or the result of evaluating func. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classmcurses_1_1optional_a05c4a39a77de6c38df1dc8e93716d1c1}{}\label{classmcurses_1_1optional_a05c4a39a77de6c38df1dc8e93716d1c1} 
+\index{mcurses\+::optional@{mcurses\+::optional}!value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}}
+\index{value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}!mcurses\+::optional@{mcurses\+::optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or\+\_\+eval()}{value\_or\_eval()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename F $>$ \\
+T \hyperlink{classmcurses_1_1optional}{mcurses\+::optional}$<$ T $>$\+::value\+\_\+or\+\_\+eval (\begin{DoxyParamCaption}\item[{F}]{func }\end{DoxyParamCaption})}
+
+Evaluates func and forwards its return value if $\ast$this is uninitialized, otherwise returns the value stoed in $\ast$this. Specialized for when $\ast$this is an rvalue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Function to be evaluated and returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Either} & the value stored in $\ast$this, or the result of evaluating func. \\
+\hline
+\end{DoxyRetVals}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/anthony/\+Documents/\+C++/\+Projects/\+Optional/include/\hyperlink{optional_8hpp}{optional.\+hpp}\end{DoxyCompactItemize}

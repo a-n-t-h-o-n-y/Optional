@@ -1,0 +1,710 @@
+\hypertarget{classmcurses_1_1Optional}{}\section{mcurses\+:\+:Optional$<$ T $>$ Class Template Reference}
+\label{classmcurses_1_1Optional}\index{mcurses\+::\+Optional$<$ T $>$@{mcurses\+::\+Optional$<$ T $>$}}
+
+
+Wraps a type to provide an optional \textquotesingle{}null\textquotesingle{}, or empty state.  
+
+
+
+
+{\ttfamily \#include $<$optional.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmcurses_1_1Optional_acde60baa6c9d0875b94825e979eda49c}{}\label{classmcurses_1_1Optional_acde60baa6c9d0875b94825e979eda49c} 
+using {\bfseries value\+\_\+type} = T
+\item 
+\hypertarget{classmcurses_1_1Optional_ab9bbf1c6e9076968c95a185a02a264fc}{}\label{classmcurses_1_1Optional_ab9bbf1c6e9076968c95a185a02a264fc} 
+using {\bfseries reference\+\_\+type} = T \&
+\item 
+\hypertarget{classmcurses_1_1Optional_ad890e95fb87a634a20be4c303667dcf8}{}\label{classmcurses_1_1Optional_ad890e95fb87a634a20be4c303667dcf8} 
+using {\bfseries reference\+\_\+const\+\_\+type} = const T \&
+\item 
+\hypertarget{classmcurses_1_1Optional_a58c2635e4aa8b4fe4ae1edd119689587}{}\label{classmcurses_1_1Optional_a58c2635e4aa8b4fe4ae1edd119689587} 
+using {\bfseries rval\+\_\+reference\+\_\+type} = T \&\&
+\item 
+\hypertarget{classmcurses_1_1Optional_a8fd6d3594afac4a3e16017a39022db71}{}\label{classmcurses_1_1Optional_a8fd6d3594afac4a3e16017a39022db71} 
+using {\bfseries pointer\+\_\+type} = T $\ast$
+\item 
+\hypertarget{classmcurses_1_1Optional_a0ea30d61700c90c149f241ec16bb585c}{}\label{classmcurses_1_1Optional_a0ea30d61700c90c149f241ec16bb585c} 
+using {\bfseries pointer\+\_\+const\+\_\+type} = const T $\ast$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmcurses_1_1Optional_a623c4f75b05b17ec7ad6d80faa302a5b}{Optional} () noexcept
+\begin{DoxyCompactList}\small\item\em Default constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_a59e637ea31df67b8a2453597603b1493}{Optional} (\hyperlink{classmcurses_1_1None__t}{None\+\_\+t} n) noexcept
+\begin{DoxyCompactList}\small\item\em Constructs an uninitialized \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_a337b6aa5d069a287cb76867b912dfb47}{Optional} (const T \&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional} from a T object. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_acacbd9b1e8a927de478bff6daea6bb96}{Optional} (T \&\&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional} from a moveable T object. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_ae0408366bfb3d0b11ba60004871b863e}{Optional} (bool condition, const T \&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Conditionally constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_a53b4829b1acfd54744d6dd8edb6dc2dc}{Optional} (bool condition, T \&\&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Conditionally constructs an \hyperlink{classmcurses_1_1Optional}{Optional} from a moveable T object. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_a54206fd5a298d201a94fcbf869442169}{Optional} (const \hyperlink{classmcurses_1_1Optional}{Optional} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_a4f9963abeb921ad1b51bbb176fe1e8fd}{Optional} (\hyperlink{classmcurses_1_1Optional}{Optional} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1Optional_aa89d00c7dcd0b47c2b8fb5ac077795c4}{Optional} (const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructs from implicitly convertible type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1Optional_a8818f33dbbe44f276c8ba36b83d4b4f6}{Optional} (\hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&\&rhs)
+\begin{DoxyCompactList}\small\item\em Move constructs from implicitly convertible type. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_ab76004970466959aaa1ae03255db9bf3}{operator=} (const \hyperlink{classmcurses_1_1Optional}{Optional} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_aae2fb9089d2d969590c3d666339cb1a4}{operator=} (\hyperlink{classmcurses_1_1Optional}{Optional} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignement operator. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_a5d3515e3b7ce25aa5f5f5d4c08c1b35e}{operator=} (\hyperlink{classmcurses_1_1None__t}{None\+\_\+t} n) noexcept
+\begin{DoxyCompactList}\small\item\em \hyperlink{classmcurses_1_1None__t}{None\+\_\+t} assignement operator. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_ac77b0ca69b51f7d176983812d95c0807}{operator=} (const T \&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Value copy assignment operator. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_a023f00ae051bce4f61885e8bbfd14106}{operator=} (T \&\&\hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value})
+\begin{DoxyCompactList}\small\item\em Value move assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_a3cb153eb9365b4fc64616d7505465ed8}{operator=} (const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Converting copy assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\\hyperlink{classmcurses_1_1Optional}{Optional} \& \hyperlink{classmcurses_1_1Optional_a08e3433ed663644a0f6f7148197df952}{operator=} (\hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&\&rhs)
+\begin{DoxyCompactList}\small\item\em Converting move assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Args$>$ }\\void \hyperlink{classmcurses_1_1Optional_ad61d5e9b20d4824e064f528772e9b805}{emplace} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Directly construct a value inside of an existing \hyperlink{classmcurses_1_1Optional}{Optional}. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classmcurses_1_1Optional_ac85ab4b82668d46e40f0ad02b83d047e}{get} () const
+\begin{DoxyCompactList}\small\item\em Returns a reference to the held value. \end{DoxyCompactList}\item 
+T \& \hyperlink{classmcurses_1_1Optional_a353d8df8a75234d372b3a0b0027f2afd}{get} ()
+\begin{DoxyCompactList}\small\item\em Returns a reference to the held value. \end{DoxyCompactList}\item 
+const T $\ast$ \hyperlink{classmcurses_1_1Optional_a4b2038d37bb6a17cac2904d7c82ce156}{operator-\/$>$} () const
+\begin{DoxyCompactList}\small\item\em Member access overload to underlying object. \end{DoxyCompactList}\item 
+T $\ast$ \hyperlink{classmcurses_1_1Optional_a64ff247dad4e237f9e16c073174ba6be}{operator-\/$>$} ()
+\begin{DoxyCompactList}\small\item\em Member access overload to underlying object. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classmcurses_1_1Optional_a080bc167c71a50bdbe27944c2e9b6019}{operator$\ast$} () const \&
+\begin{DoxyCompactList}\small\item\em Provides direct access to the underlying object. \end{DoxyCompactList}\item 
+T \& \hyperlink{classmcurses_1_1Optional_a2f816c249fc38f69c5c395fdf7d41ca8}{operator$\ast$} () \&
+\begin{DoxyCompactList}\small\item\em Provides direct access to the underlying object. \end{DoxyCompactList}\item 
+T \&\& \hyperlink{classmcurses_1_1Optional_aba889d24a53535305844ebcae23e6604}{operator$\ast$} () \&\&
+\begin{DoxyCompactList}\small\item\em Provides direct access to the underlying object. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{value} () const \&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or throw exception. \end{DoxyCompactList}\item 
+T \& \hyperlink{classmcurses_1_1Optional_ab94cd795bbc0dc263d61a2b49cd79084}{value} () \&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or throw exception. \end{DoxyCompactList}\item 
+T \&\& \hyperlink{classmcurses_1_1Optional_a0d09d596f54af6693bedcf5dc12e6d3b}{value} () \&\&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or throw exception. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\T \hyperlink{classmcurses_1_1Optional_a047c51eb457fd6de52987bf991935f01}{value\+\_\+or} (U \&\&val) const \&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or return {\ttfamily val}. Returns {\ttfamily val} if $\ast$this is uninitialized, otherwise returns a reference to the value stored in $\ast$this. Overloaded on const \&. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U $>$ }\\T \hyperlink{classmcurses_1_1Optional_aff211e864bc5bda6bc5b72298cdbadd3}{value\+\_\+or} (U \&\&val) \&\&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or return {\ttfamily val}. Returns {\ttfamily val} if $\ast$this is uninitialized, otherwise returns an r-\/value reference to the value stored in $\ast$this. Overloaded on \&\&. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename F $>$ }\\T \hyperlink{classmcurses_1_1Optional_aa5a4cbc8fd315e360e6fcb6dc4e55c07}{value\+\_\+or\+\_\+eval} (F func) const \&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or evaluate {\ttfamily func} and return its value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename F $>$ }\\T \hyperlink{classmcurses_1_1Optional_ab90365e7ea0a567427f174085931caa4}{value\+\_\+or\+\_\+eval} (F func) \&\&
+\begin{DoxyCompactList}\small\item\em Direct access to the underlying object, or evaluate {\ttfamily func} and return its value. \end{DoxyCompactList}\item 
+const T $\ast$ \hyperlink{classmcurses_1_1Optional_ac1c01b2ccf9aa96c1e5f91d78bdbc928}{get\+\_\+ptr} () const
+\begin{DoxyCompactList}\small\item\em Access to the underlying object\textquotesingle{}s pointer. \end{DoxyCompactList}\item 
+T $\ast$ \hyperlink{classmcurses_1_1Optional_a7f9c56ad08329b814a314d741e92fa59}{get\+\_\+ptr} ()
+\begin{DoxyCompactList}\small\item\em Access to the underlying object\textquotesingle{}s pointer. \end{DoxyCompactList}\item 
+\hyperlink{classmcurses_1_1Optional_ae9ac980d14dea230fdf8e1fbb3501eb4}{operator bool} () const noexcept
+\begin{DoxyCompactList}\small\item\em Safe conversion to bool. \end{DoxyCompactList}\item 
+bool \hyperlink{classmcurses_1_1Optional_a4d864144db0c48ea381b6582214f256b}{operator!} () const noexcept
+\begin{DoxyCompactList}\small\item\em Convinience function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmcurses_1_1Optional_a1765268b663a7e1bce2246dec366ac57}{}\label{classmcurses_1_1Optional_a1765268b663a7e1bce2246dec366ac57} 
+{\footnotesize template$<$typename U $>$ }\\class {\bfseries Optional}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class mcurses\+::\+Optional$<$ T $>$}
+
+Wraps a type to provide an optional \textquotesingle{}null\textquotesingle{}, or empty state. 
+
+A wrapped object is accessed by dereferencing an \hyperlink{classmcurses_1_1Optional}{Optional} object. \hyperlink{classmcurses_1_1Optional}{Optional} objects can be tested as a boolean for whether or not they contain a value. Useful when 0, -\/1, or default constructed does not suffice for \textquotesingle{}no value\textquotesingle{}.
+
+Typical usage\+: 
+\begin{DoxyCode}
+Optional<int> opt\_i\{5\};
+\textcolor{keywordflow}{if}(opt\_i) \{
+    foo(*opt\_i);
+\}
+\end{DoxyCode}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmcurses_1_1Optional_a623c4f75b05b17ec7ad6d80faa302a5b}{}\label{classmcurses_1_1Optional_a623c4f75b05b17ec7ad6d80faa302a5b} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Default constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+$\ast$this is {\itshape not} initialized, T\textquotesingle{}s default constructor is {\itshape not} called. \hypertarget{classmcurses_1_1Optional_a59e637ea31df67b8a2453597603b1493}{}\label{classmcurses_1_1Optional_a59e637ea31df67b8a2453597603b1493} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1None__t}{None\+\_\+t}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs an uninitialized \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+$\ast$this is {\itshape not} initialized, T\textquotesingle{}s default constrcutor is {\itshape not} called. 
+\begin{DoxyParams}{Parameters}
+{\em n} & Use \hyperlink{namespacemcurses_a3fd18c73e6d453dcdfdd1fcdaf9bb0d7}{mcurses\+::none} provided in \hyperlink{none_8hpp}{none.\+hpp}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacemcurses_a3fd18c73e6d453dcdfdd1fcdaf9bb0d7}{none} 
+\end{DoxySeeAlso}
+\hypertarget{classmcurses_1_1Optional_a337b6aa5d069a287cb76867b912dfb47}{}\label{classmcurses_1_1Optional_a337b6aa5d069a287cb76867b912dfb47} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional} from a T object. 
+
+$\ast$this is initialized with a copy of {\ttfamily value}. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Value which is copied into the \hyperlink{classmcurses_1_1Optional}{Optional}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_acacbd9b1e8a927de478bff6daea6bb96}{}\label{classmcurses_1_1Optional_acacbd9b1e8a927de478bff6daea6bb96} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{T \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional} from a moveable T object. 
+
+{\ttfamily value} is move constructed into the \hyperlink{classmcurses_1_1Optional}{Optional} object. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Value which is moved into the \hyperlink{classmcurses_1_1Optional}{Optional}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_ae0408366bfb3d0b11ba60004871b863e}{}\label{classmcurses_1_1Optional_ae0408366bfb3d0b11ba60004871b863e} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{bool}]{condition,  }\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Conditionally constructs an initialized \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+If condition is true, {\ttfamily value} is copy constructed into $\ast$this, otherwise $\ast$this is not initialized. 
+\begin{DoxyParams}{Parameters}
+{\em condition} & Determines if \hyperlink{classmcurses_1_1Optional}{Optional} is initialized or not. \\
+\hline
+{\em value} & Object copied into $\ast$this if {\ttfamily condition} is true. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a53b4829b1acfd54744d6dd8edb6dc2dc}{}\label{classmcurses_1_1Optional_a53b4829b1acfd54744d6dd8edb6dc2dc} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{bool}]{condition,  }\item[{T \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Conditionally constructs an \hyperlink{classmcurses_1_1Optional}{Optional} from a moveable T object. 
+
+If condition is true, {\ttfamily value} is move constructed into $\ast$this, otherwise $\ast$this is not initialized. 
+\begin{DoxyParams}{Parameters}
+{\em condition} & Determines if \hyperlink{classmcurses_1_1Optional}{Optional} is initialized or not. \\
+\hline
+{\em value} & Object moved into $\ast$this if {\ttfamily condition} is true. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a54206fd5a298d201a94fcbf869442169}{}\label{classmcurses_1_1Optional_a54206fd5a298d201a94fcbf869442169} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ T $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+If {\ttfamily rhs} is initialized, then a copy of its value will be constructed within $\ast$this, and $\ast$this will be initialized, otherwise $\ast$this is default constructed. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \hyperlink{classmcurses_1_1Optional}{Optional} to copy, T must be copy constructible. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a4f9963abeb921ad1b51bbb176fe1e8fd}{}\label{classmcurses_1_1Optional_a4f9963abeb921ad1b51bbb176fe1e8fd} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1Optional}{Optional}$<$ T $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move constructs an \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+If {\ttfamily rhs} is initialized, then its internally held value is moved into $\ast$this, and {\ttfamily rhs} will be empty, otherwise $\ast$this is default constructed. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \hyperlink{classmcurses_1_1Optional}{Optional} to move, T must be move constructible. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_aa89d00c7dcd0b47c2b8fb5ac077795c4}{}\label{classmcurses_1_1Optional_aa89d00c7dcd0b47c2b8fb5ac077795c4} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Copy constructs from implicitly convertible type. 
+
+If {\ttfamily rhs} is initialized and U is implicitly convertible to T, then $\ast$this is initialized with a copy of {\ttfamily rhs}. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Object to be copied into $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a8818f33dbbe44f276c8ba36b83d4b4f6}{}\label{classmcurses_1_1Optional_a8818f33dbbe44f276c8ba36b83d4b4f6} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!Optional@{Optional}}
+\index{Optional@{Optional}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{Optional()}{Optional()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::\hyperlink{classmcurses_1_1Optional}{Optional} (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Move constructs from implicitly convertible type. 
+
+If {\ttfamily rhs} is initialized and U is implicitly convertible to T, then $\ast$this is initialized with {\ttfamily rhs}. T must have a move constructor defined from type U. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Object to be moved into $\ast$this. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmcurses_1_1Optional_ad61d5e9b20d4824e064f528772e9b805}{}\label{classmcurses_1_1Optional_ad61d5e9b20d4824e064f528772e9b805} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!emplace@{emplace}}
+\index{emplace@{emplace}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename... Args$>$ \\
+void \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::emplace (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Directly construct a value inside of an existing \hyperlink{classmcurses_1_1Optional}{Optional}. 
+
+If $\ast$this is initialized, the held object is destroyed. The {\ttfamily args} are forwarded to the constructor of T. \hypertarget{classmcurses_1_1Optional_ac85ab4b82668d46e40f0ad02b83d047e}{}\label{classmcurses_1_1Optional_ac85ab4b82668d46e40f0ad02b83d047e} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!get@{get}}
+\index{get@{get}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+const T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a reference to the held value. 
+
+Undefined if $\ast$this is uninitialized. \begin{DoxyReturn}{Returns}
+const reference to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a353d8df8a75234d372b3a0b0027f2afd}{}\label{classmcurses_1_1Optional_a353d8df8a75234d372b3a0b0027f2afd} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!get@{get}}
+\index{get@{get}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a reference to the held value. 
+
+Undefined if $\ast$this is uninitialized. \begin{DoxyReturn}{Returns}
+Reference to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_ac1c01b2ccf9aa96c1e5f91d78bdbc928}{}\label{classmcurses_1_1Optional_ac1c01b2ccf9aa96c1e5f91d78bdbc928} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!get\+\_\+ptr@{get\+\_\+ptr}}
+\index{get\+\_\+ptr@{get\+\_\+ptr}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{get\+\_\+ptr()}{get\_ptr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+const T$\ast$ \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::get\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Access to the underlying object\textquotesingle{}s pointer. 
+
+$\ast$this still owns the object, do not delete the object via this pointer. \begin{DoxyReturn}{Returns}
+const pointer to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a7f9c56ad08329b814a314d741e92fa59}{}\label{classmcurses_1_1Optional_a7f9c56ad08329b814a314d741e92fa59} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!get\+\_\+ptr@{get\+\_\+ptr}}
+\index{get\+\_\+ptr@{get\+\_\+ptr}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{get\+\_\+ptr()}{get\_ptr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T$\ast$ \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::get\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Access to the underlying object\textquotesingle{}s pointer. 
+
+$\ast$this still owns the object, do not delete the object via this pointer. \begin{DoxyReturn}{Returns}
+Pointer to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_ae9ac980d14dea230fdf8e1fbb3501eb4}{}\label{classmcurses_1_1Optional_ae9ac980d14dea230fdf8e1fbb3501eb4} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+
+
+
+Safe conversion to bool. 
+
+\begin{DoxyReturn}{Returns}
+True if object contains a value, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a4d864144db0c48ea381b6582214f256b}{}\label{classmcurses_1_1Optional_a4d864144db0c48ea381b6582214f256b} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator"!@{operator"!}}
+\index{operator"!@{operator"!}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator"!()}{operator!()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+bool \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator! (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Convinience function. 
+
+Explicit operator bool makes ! operation verbose with !bool(opt). \begin{DoxyReturn}{Returns}
+Opposite of operator bool. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a080bc167c71a50bdbe27944c2e9b6019}{}\label{classmcurses_1_1Optional_a080bc167c71a50bdbe27944c2e9b6019} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+const T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides direct access to the underlying object. 
+
+Undefined if $\ast$this is uninitialized. Overloaded on const \&. \begin{DoxyReturn}{Returns}
+const l-\/value reference to the held object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a2f816c249fc38f69c5c395fdf7d41ca8}{}\label{classmcurses_1_1Optional_a2f816c249fc38f69c5c395fdf7d41ca8} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides direct access to the underlying object. 
+
+Undefined if $\ast$this is uninitialized. Overloaded on \&. \begin{DoxyReturn}{Returns}
+l-\/value reference to the held object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_aba889d24a53535305844ebcae23e6604}{}\label{classmcurses_1_1Optional_aba889d24a53535305844ebcae23e6604} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T\&\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Provides direct access to the underlying object. 
+
+Undefined if $\ast$this is uninitialized. Overloaded on \&\&. \begin{DoxyReturn}{Returns}
+r-\/value reference to the underlying object 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a4b2038d37bb6a17cac2904d7c82ce156}{}\label{classmcurses_1_1Optional_a4b2038d37bb6a17cac2904d7c82ce156} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+const T$\ast$ \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Member access overload to underlying object. 
+
+Undefined if $\ast$this is uninitialized. \begin{DoxyReturn}{Returns}
+const pointer to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a64ff247dad4e237f9e16c073174ba6be}{}\label{classmcurses_1_1Optional_a64ff247dad4e237f9e16c073174ba6be} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T$\ast$ \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Member access overload to underlying object. 
+
+Undefined if $\ast$this is uninitialized. \begin{DoxyReturn}{Returns}
+Pointer to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_ab76004970466959aaa1ae03255db9bf3}{}\label{classmcurses_1_1Optional_ab76004970466959aaa1ae03255db9bf3} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ T $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy assignment operator. 
+
+The object held by $\ast$this is destroyed and replaced with the contents of {\ttfamily rhs}. If {\ttfamily rhs} is empty, $\ast$this is left empty. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Object to be copied into $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_aae2fb9089d2d969590c3d666339cb1a4}{}\label{classmcurses_1_1Optional_aae2fb9089d2d969590c3d666339cb1a4} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1Optional}{Optional}$<$ T $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Move assignement operator. 
+
+The object held by $\ast$this is destroyed and replaced with the contents of {\ttfamily rhs}. If {\ttfamily rhs} is empty, $\ast$this is left empty. rhs is left in an invalid state. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Object to be moved into $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a5d3515e3b7ce25aa5f5f5d4c08c1b35e}{}\label{classmcurses_1_1Optional_a5d3515e3b7ce25aa5f5f5d4c08c1b35e} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1None__t}{None\+\_\+t}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+\hyperlink{classmcurses_1_1None__t}{None\+\_\+t} assignement operator. 
+
+Leaves $\ast$this in an uninitialized state. If $\ast$this was previously initialized, the held object is destroyed. 
+\begin{DoxyParams}{Parameters}
+{\em n} & Use \hyperlink{namespacemcurses_a3fd18c73e6d453dcdfdd1fcdaf9bb0d7}{mcurses\+::none} provided in \hyperlink{none_8hpp}{none.\+hpp}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacemcurses_a3fd18c73e6d453dcdfdd1fcdaf9bb0d7}{none} 
+\end{DoxySeeAlso}
+\hypertarget{classmcurses_1_1Optional_ac77b0ca69b51f7d176983812d95c0807}{}\label{classmcurses_1_1Optional_ac77b0ca69b51f7d176983812d95c0807} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Value copy assignment operator. 
+
+If $\ast$this is initialized, the object held is destroyed and replaced with a copy of {\ttfamily value}. T must be copy constructible. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to be copied into $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a023f00ae051bce4f61885e8bbfd14106}{}\label{classmcurses_1_1Optional_a023f00ae051bce4f61885e8bbfd14106} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{T \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Value move assignment operator. 
+
+If $\ast$this is initialized, the object held is destroyed and replaced with {\ttfamily value}. T must be move constructible. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to be moved into $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a3cb153eb9365b4fc64616d7505465ed8}{}\label{classmcurses_1_1Optional_a3cb153eb9365b4fc64616d7505465ed8} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converting copy assignment operator. 
+
+If $\ast$this is initialized, the object held is destroyed and replaced with a copy of {\ttfamily rhs}. U must be implicitly convertible to T. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \hyperlink{classmcurses_1_1Optional}{Optional} to be copied to $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_a08e3433ed663644a0f6f7148197df952}{}\label{classmcurses_1_1Optional_a08e3433ed663644a0f6f7148197df952} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!operator=@{operator=}}
+\index{operator=@{operator=}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+\hyperlink{classmcurses_1_1Optional}{Optional}\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\hyperlink{classmcurses_1_1Optional}{Optional}$<$ U $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converting move assignment operator. 
+
+If $\ast$this is initialized, the object held is destroyed and replace with {\ttfamily rhs}. T must have a move constructor from type U. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \hyperlink{classmcurses_1_1Optional}{Optional} to be moved to $\ast$this. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f}{}\label{classmcurses_1_1Optional_ad366988d0311c9f6d4de369f222f248f} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value@{value}}
+\index{value@{value}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+const T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or throw exception. 
+
+Throws \hyperlink{classmcurses_1_1Bad__optional__access}{Bad\+\_\+optional\+\_\+access} if $\ast$this is uninitialized. Overloaded on const \&. \begin{DoxyReturn}{Returns}
+const l-\/value reference to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_ab94cd795bbc0dc263d61a2b49cd79084}{}\label{classmcurses_1_1Optional_ab94cd795bbc0dc263d61a2b49cd79084} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value@{value}}
+\index{value@{value}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or throw exception. 
+
+Throws \hyperlink{classmcurses_1_1Bad__optional__access}{Bad\+\_\+optional\+\_\+access} if $\ast$this is uninitialized. Overloaded on \&. \begin{DoxyReturn}{Returns}
+l-\/value reference to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a0d09d596f54af6693bedcf5dc12e6d3b}{}\label{classmcurses_1_1Optional_a0d09d596f54af6693bedcf5dc12e6d3b} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value@{value}}
+\index{value@{value}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T\&\& \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or throw exception. 
+
+Throws \hyperlink{classmcurses_1_1Bad__optional__access}{Bad\+\_\+optional\+\_\+access} if $\ast$this is uninitialized. Overloaded on \&\&. \begin{DoxyReturn}{Returns}
+r-\/value reference to the underlying object. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_a047c51eb457fd6de52987bf991935f01}{}\label{classmcurses_1_1Optional_a047c51eb457fd6de52987bf991935f01} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value\+\_\+or@{value\+\_\+or}}
+\index{value\+\_\+or@{value\+\_\+or}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or()}{value\_or()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+T \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value\+\_\+or (\begin{DoxyParamCaption}\item[{U \&\&}]{val }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or return {\ttfamily val}. Returns {\ttfamily val} if $\ast$this is uninitialized, otherwise returns a reference to the value stored in $\ast$this. Overloaded on const \&. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to be returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either the value stored in $\ast$this, or {\ttfamily val}. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_aff211e864bc5bda6bc5b72298cdbadd3}{}\label{classmcurses_1_1Optional_aff211e864bc5bda6bc5b72298cdbadd3} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value\+\_\+or@{value\+\_\+or}}
+\index{value\+\_\+or@{value\+\_\+or}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or()}{value\_or()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U $>$ \\
+T \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value\+\_\+or (\begin{DoxyParamCaption}\item[{U \&\&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or return {\ttfamily val}. Returns {\ttfamily val} if $\ast$this is uninitialized, otherwise returns an r-\/value reference to the value stored in $\ast$this. Overloaded on \&\&. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to be returned if $\ast$this is uninitialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either the value stored in $\ast$this, or {\ttfamily val}. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_aa5a4cbc8fd315e360e6fcb6dc4e55c07}{}\label{classmcurses_1_1Optional_aa5a4cbc8fd315e360e6fcb6dc4e55c07} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}}
+\index{value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or\+\_\+eval()}{value\_or\_eval()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename F $>$ \\
+T \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value\+\_\+or\+\_\+eval (\begin{DoxyParamCaption}\item[{F}]{func }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or evaluate {\ttfamily func} and return its value. 
+
+If $\ast$this is uninitialized, {\ttfamily func} is evaluated and it\textquotesingle{}s value returned. Otherwise returns a reference to the underlying object in $\ast$this. Overloaded on const \&. 
+\begin{DoxyParams}{Parameters}
+{\em func} & Function with signature T func(). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value stored in $\ast$this, or the result of {\ttfamily func()}. 
+\end{DoxyReturn}
+\hypertarget{classmcurses_1_1Optional_ab90365e7ea0a567427f174085931caa4}{}\label{classmcurses_1_1Optional_ab90365e7ea0a567427f174085931caa4} 
+\index{mcurses\+::\+Optional@{mcurses\+::\+Optional}!value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}}
+\index{value\+\_\+or\+\_\+eval@{value\+\_\+or\+\_\+eval}!mcurses\+::\+Optional@{mcurses\+::\+Optional}}
+\subsubsection{\texorpdfstring{value\+\_\+or\+\_\+eval()}{value\_or\_eval()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename F $>$ \\
+T \hyperlink{classmcurses_1_1Optional}{mcurses\+::\+Optional}$<$ T $>$\+::value\+\_\+or\+\_\+eval (\begin{DoxyParamCaption}\item[{F}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Direct access to the underlying object, or evaluate {\ttfamily func} and return its value. 
+
+If $\ast$this is uninitialized, {\ttfamily func} is evaluated and it\textquotesingle{}s value returned. Otherwise returns an r-\/value reference to the underlying object in $\ast$this. Overloaded on \&\&. 
+\begin{DoxyParams}{Parameters}
+{\em func} & Function with signature T func(). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value stored in $\ast$this, or the result of {\ttfamily func()}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/anthony/\+Documents/\+C++/\+Projects/\+Optional/include/\hyperlink{optional_8hpp}{optional.\+hpp}\end{DoxyCompactItemize}

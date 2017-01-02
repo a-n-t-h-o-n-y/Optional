@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['get',['get',['../classmcurses_1_1Optional.html#ac85ab4b82668d46e40f0ad02b83d047e',1,'mcurses::Optional::get() const'],['../classmcurses_1_1Optional.html#a353d8df8a75234d372b3a0b0027f2afd',1,'mcurses::Optional::get()'],['../namespacemcurses.html#aecfab040ad7ea9b1d5cf9ea4994431e0',1,'mcurses::get(const Optional&lt; T &gt; &amp;opt)'],['../namespacemcurses.html#a67fa46298482b4f9f0d4d9af2fc57737',1,'mcurses::get(Optional&lt; T &gt; &amp;opt)'],['../namespacemcurses.html#ac518dd9b4c181ecb07ddfe3a76b810f6',1,'mcurses::get(const Optional&lt; T &gt; *opt)'],['../namespacemcurses.html#a2f17cb40b825113e523fd0c67bfc85c0',1,'mcurses::get(Optional&lt; T &gt; *opt)']]],
+  ['get_5fpointer',['get_pointer',['../namespacemcurses.html#a3a37e772efc81d6dc80e6b53ffa8c89c',1,'mcurses::get_pointer(const Optional&lt; T &gt; &amp;opt) -&gt; typename Optional&lt; T &gt;::pointer_const_type'],['../namespacemcurses.html#a19b17f8de177c03a633c1b48fdf0a91c',1,'mcurses::get_pointer(Optional&lt; T &gt; &amp;opt) -&gt; typename Optional&lt; T &gt;::pointer_type']]],
+  ['get_5fptr',['get_ptr',['../classmcurses_1_1Optional.html#ac1c01b2ccf9aa96c1e5f91d78bdbc928',1,'mcurses::Optional::get_ptr() const'],['../classmcurses_1_1Optional.html#a7f9c56ad08329b814a314d741e92fa59',1,'mcurses::Optional::get_ptr()']]]
+];
