@@ -2,7 +2,7 @@ bin/*
 build/*
 lib/*
 notes
-docs/html/
+html/
 
 *.[ao]
 *.so
