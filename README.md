@@ -6,8 +6,6 @@ status of the object can be queried with an explicit bool conversion. If true,
 the Optional object is valid and can be accessed through a dereference. If
 false, the object is in a null(empty) state.
 
-![alt_text](docs/optional.png "Optional Logo")
-
 ## Code Example
     opt::Optional<int> opt_int;
     if (opt_int) {
@@ -70,3 +68,5 @@ well. Issues and questions can be directed to the GitHub issue tracker.
 
 ## License
 This software is distributed under the [MIT License](LICENSE.txt).
+
+![alt_text](docs/optional.png "Optional Logo")
