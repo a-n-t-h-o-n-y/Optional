@@ -9,3 +9,4 @@ docs/html/
 *.out
 *.json
 *.vim
+tags
