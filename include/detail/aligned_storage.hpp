@@ -9,10 +9,6 @@ namespace detail {
 template <typename T>
 class Aligned_storage {
    public:
-    // Aligned_storage() = default;
-
-    // Aligned_storage(const T& value) { ::new (this->address()) T(value); }
-
     const T* ptr_ref() const { return static_cast<const T*>(this->address()); }
 
     T* ptr_ref() { return static_cast<T*>(this->address()); }
