@@ -85,9 +85,7 @@ class Optional {
     }
 
     /// Destructs the underlying object
-    ~Optional() {
-        this->destroy();
-    }
+    ~Optional() { this->destroy(); }
 
     /// \brief Copy constructs an Optional.
     ///
@@ -427,6 +425,15 @@ class Optional {
             initialized_ = false;
         }
     }
+};
+
+/// Optional<void> specialization.
+template <>
+class Optional<void> {
+   public:
+    bool is_initialized() const { return false; }
+    explicit operator bool() const noexcept { return this->is_initialized(); }
+    bool operator!() const noexcept { return !this->is_initialized(); }
 };
 
 /// T must have operator== defined.

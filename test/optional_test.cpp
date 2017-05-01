@@ -13,6 +13,7 @@ using opt::Bad_optional_access;
 
 TEST(OptionalTest, DefaultConstructor) {
     Optional<int> opt{};
+    Optional<void> ov;
     EXPECT_FALSE(bool(opt));
 }
 
