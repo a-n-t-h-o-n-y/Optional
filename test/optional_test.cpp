@@ -1,9 +1,7 @@
-#include <bad_optional_access.hpp>
-#include <none.hpp>
-#include <optional.hpp>
-
+#include "optional/bad_optional_access.hpp"
+#include "optional/none.hpp"
+#include "optional/optional.hpp"
 #include <gtest/gtest.h>
-
 #include <string>
 #include <utility>
 

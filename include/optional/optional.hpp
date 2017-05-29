@@ -2,12 +2,9 @@
 /// \brief Contains Optional template class definition.
 #ifndef OPTIONAL_HPP
 #define OPTIONAL_HPP
-
 #include "bad_optional_access.hpp"
 #include "none.hpp"
 #include "detail/aligned_storage.hpp"
-
-#include <memory>  // remove
 #include <utility>
 #include <new>
 
@@ -171,7 +168,7 @@ class Optional {
     /// initialized, the held object is destroyed.
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
-    Optional& operator=(None_t n) noexcept {
+    Optional& operator=(None_t) noexcept {
         this->destroy();
         return *this;
     }

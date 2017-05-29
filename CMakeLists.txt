@@ -1,45 +1,34 @@
-cmake_minimum_required (VERSION 3.6)
-project (Optional)
+cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+project(liboptional LANGUAGES CXX)
+include(GNUInstallDirs)
+enable_testing()
+add_compile_options(-std=c++14)
 
-# Uncomment the next three lines to compile with clang static analyzer
-# set(CCC_CXX clang++)
-# set(CMAKE_CXX_COMPILER /usr/lib/clang/c++-analyzer)
-# set(CMAKE_LINKER clang++)
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-# Build System Information For Clang-Tidy
+set(TEST_SOURCES 
+    "test/none_test.cpp"
+    "test/optional_test.cpp"
+    "test/aligned_storage_test.cpp"
+)
+
+add_executable(testoptional ${TEST_SOURCES})
+
+target_include_directories(testoptional PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
+
+target_link_libraries(testoptional gtest gtest_main)
+
+add_test(testoptional testoptional)
+
+# Build System Info For Clang-Tidy
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_custom_target(compile_commands ALL
 	COMMAND [ -f ${CMAKE_SOURCE_DIR}/build/compile_commands.json ] && mv ${CMAKE_SOURCE_DIR}/build/compile_commands.json
 		${CMAKE_SOURCE_DIR}/compile_commands.json || :)
 
-# Set Output Directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/lib")
-
-# Set Compiler Flags
-set(CMAKE_CXX_FLAGS "-std=c++14 -g -Wall")
-
-# Include Directory
-include_directories(include)
-
-# Collect Test Sources
-list(APPEND TEST_SOURCES "test/none_test.cpp"
-						 "test/optional_test.cpp"
-                         "test/aligned_storage_test.cpp"
-						 )
-
-# Create Test Executable
-add_executable(tests ${TEST_SOURCES})
-
-# Link libraries to executables
-target_link_libraries(tests gtest gtest_main)
-
-#Install Headers
-install(DIRECTORY include/ DESTINATION include/aml/optional)
-
-# Doxygen Target - Doxyfile in project/docs - make docs
+# Doxygen Target
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
 add_custom_target(docs

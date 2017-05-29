@@ -1,5 +1,5 @@
-#ifndef ALIGNED_STORAGE_HPP
-#define ALIGNED_STORAGE_HPP
+#ifndef DETAIL_ALIGNED_STORAGE_HPP
+#define DETAIL_ALIGNED_STORAGE_HPP
 
 #include <new>
 
@@ -27,4 +27,4 @@ class Aligned_storage {
 
 }  // namespace detail
 }  // namespace opt
-#endif  // ALIGNED_STORAGE_HPP
+#endif  // DETAIL_ALIGNED_STORAGE_HPP
