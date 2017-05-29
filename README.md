@@ -1,10 +1,11 @@
 ## Overview
 A header only, C++14 implementation of the Boost::Optional library.
 
-Optional objects wrap any type and allow them to occupy a 'null' state. The
+Optional objects wrap any type and allow it to occupy a 'null' state. The
 status of the object can be queried with an explicit bool conversion. If true,
 the Optional object is valid and can be accessed through a dereference. If
-false, the object is in a null(empty) state.
+false, the object is in a null(empty) state. Optional objects are stack
+allocated.
 
 ## Code Example
     opt::Optional<int> opt_int;
