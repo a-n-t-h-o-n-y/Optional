@@ -18,7 +18,10 @@ target_include_directories(testoptional PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 
-target_link_libraries(testoptional gtest gtest_main)
+find_package(GTest REQUIRED)
+if (GTEST_FOUND)
+    target_link_libraries(testoptional ${GTEST_BOTH_LIBRARIES})
+endif()
 
 add_test(testoptional testoptional)
 
