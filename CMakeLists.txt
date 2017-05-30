@@ -26,18 +26,16 @@ endif()
 add_test(testoptional testoptional)
 
 # Build System Info For Clang-Tidy
-if (NOT TARGET compile_commands)
-    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-    add_custom_target(compile_commands ALL
-    	COMMAND [ -f ${CMAKE_SOURCE_DIR}/build/compile_commands.json ] && mv
-            ${CMAKE_SOURCE_DIR}/build/compile_commands.json
-    		${CMAKE_SOURCE_DIR}/compile_commands.json || :)
-endif()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_custom_target(compile_commands_optional ALL
+    COMMAND [ -f ${CMAKE_SOURCE_DIR}/build/compile_commands.json ] && mv
+        ${CMAKE_SOURCE_DIR}/build/compile_commands.json
+        ${CMAKE_SOURCE_DIR}/compile_commands.json || :)
 
 # Doxygen Target
 find_package(Doxygen)
-if(DOXYGEN_FOUND AND NOT TARGET docs)
-    add_custom_target(docs
+if(DOXYGEN_FOUND)
+    add_custom_target(docs_optional
     ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/docs/Doxyfile
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs
     COMMENT "Generating API documentation with Doxygen" VERBATIM)
