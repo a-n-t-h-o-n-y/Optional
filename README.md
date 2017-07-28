@@ -4,8 +4,10 @@ A header only, C++14 implementation of the Boost::Optional library.
 Optional objects wrap any type and allow it to occupy a 'null' state. The
 status of the object can be queried with an explicit bool conversion. If true,
 the Optional object is valid and can be accessed through a dereference. If
-false, the object is in a null(empty) state. Optional objects are stack
-allocated.
+false, the object is in a null(empty) state.
+
+Optional objects are stack allocated. This implementation uses considerably less
+memory per object than the Boost::optional implementation(around half as much).
 
 ## Code Example
     opt::Optional<int> opt_int;
@@ -28,10 +30,6 @@ allocated.
     }
 
 ## Motivation
-This class wrapper is useful when a default constructed object, or 'zero', or
-any other valid state is not sufficient to convey the idea of empty, or
-non-existant.
-
 This implementation was created for personal practice and for use in
 [CPPurses](https://github.com/a-n-t-h-o-n-y/CPPurses).
 
