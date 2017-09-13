@@ -5,6 +5,7 @@ enable_testing()
 add_compile_options(-std=c++14)
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(TEST_SOURCES 
     "test/none_test.cpp"
@@ -13,10 +14,6 @@ set(TEST_SOURCES
 )
 
 add_executable(testoptional ${TEST_SOURCES})
-
-target_include_directories(testoptional PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>)
 
 find_package(GTest REQUIRED)
 if (GTEST_FOUND)
