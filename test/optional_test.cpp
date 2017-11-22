@@ -1,13 +1,15 @@
-#include "optional/bad_optional_access.hpp"
-#include "optional/none.hpp"
-#include "optional/optional.hpp"
+#include <optional/bad_optional_access.hpp>
+#include <optional/none.hpp>
+#include <optional/optional.hpp>
+
 #include <gtest/gtest.h>
+
 #include <string>
 #include <utility>
 
+using opt::Bad_optional_access;
 using opt::Optional;
 using opt::none;
-using opt::Bad_optional_access;
 
 TEST(OptionalTest, DefaultConstructor) {
     Optional<int> opt{};

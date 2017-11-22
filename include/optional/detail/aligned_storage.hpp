@@ -1,6 +1,5 @@
 #ifndef DETAIL_ALIGNED_STORAGE_HPP
 #define DETAIL_ALIGNED_STORAGE_HPP
-
 #include <new>
 
 namespace opt {
@@ -17,9 +16,9 @@ class Aligned_storage {
 
     T& ref() { return *this->ptr_ref(); }
 
-    const void* address() const { return data_; }
+    const void* address() const { return static_cast<const void*>(data_); }
 
-    void* address() { return data_; }
+    void* address() { return static_cast<void*>(data_); }
 
    private:
     char data_[sizeof(T)];

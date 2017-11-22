@@ -1,4 +1,5 @@
-#include "optional/detail/aligned_storage.hpp"
+#include <optional/detail/aligned_storage.hpp>
+
 #include <gtest/gtest.h>
 
 TEST(AlignedStorageTest, DefaultConstructor) {

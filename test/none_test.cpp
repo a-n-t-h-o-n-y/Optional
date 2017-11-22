@@ -1,4 +1,5 @@
-#include "optional/none.hpp"
+#include <optional/none.hpp>
+
 #include <gtest/gtest.h>
 
 TEST(NoneTest, BoolConversion) {

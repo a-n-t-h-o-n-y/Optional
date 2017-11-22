@@ -19,5 +19,4 @@ class None_t {
 /// Convenience global None_t object.
 
 }  // namespace opt
-
 #endif  // NONE_HPP
