@@ -26,7 +26,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+".html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

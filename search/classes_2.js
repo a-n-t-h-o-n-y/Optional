@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optional',['Optional',['../classopt_1_1Optional.html',1,'opt']]]
+  ['none_5ft',['None_t',['../classopt_1_1None__t.html',1,'opt']]]
 ];

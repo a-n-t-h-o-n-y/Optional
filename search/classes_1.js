@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['none_5ft',['None_t',['../classopt_1_1None__t.html',1,'opt']]]
+  ['bad_5foptional_5faccess',['Bad_optional_access',['../classopt_1_1Bad__optional__access.html',1,'opt']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bad_5foptional_5faccess',['Bad_optional_access',['../classopt_1_1Bad__optional__access.html',1,'opt']]]
+  ['aligned_5fstorage',['Aligned_storage',['../classopt_1_1detail_1_1Aligned__storage.html',1,'opt::detail']]]
 ];

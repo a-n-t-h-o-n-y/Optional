@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['emplace',['emplace',['../classopt_1_1Optional.html#ab96711776bf9d990050ce96dcd42ff06',1,'opt::Optional']]]
+  ['emplace',['emplace',['../classopt_1_1Optional.html#ac50601ca660f858e9e1da8a47af4ed5c',1,'opt::Optional']]]
 ];

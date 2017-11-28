@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['get',['get',['../classopt_1_1Optional.html#a9cb2181722775791c55bf079f13a6a5e',1,'opt::Optional::get() const'],['../classopt_1_1Optional.html#a9328c66e3bcc90cce9ba24a8c5d4d50d',1,'opt::Optional::get()'],['../namespaceopt.html#a660c69ac538360b93f6de75933049931',1,'opt::get(const Optional&lt; T &gt; &amp;opt)'],['../namespaceopt.html#a49def8a7ce64c5f898e27db5c20c33ff',1,'opt::get(Optional&lt; T &gt; &amp;opt)'],['../namespaceopt.html#a6310c4d059976c4064eeb50da33b8d56',1,'opt::get(const Optional&lt; T &gt; *opt)'],['../namespaceopt.html#a097102a795c63f9ceb9d923f333c6ba0',1,'opt::get(Optional&lt; T &gt; *opt)']]],
-  ['get_5fpointer',['get_pointer',['../namespaceopt.html#a29759f4898afab10a87c3b09c70d44c7',1,'opt::get_pointer(const Optional&lt; T &gt; &amp;opt) -&gt; typename Optional&lt; T &gt;::pointer_const_type'],['../namespaceopt.html#a4bfd283f305db5a5a0fcda96dd5756d6',1,'opt::get_pointer(Optional&lt; T &gt; &amp;opt) -&gt; typename Optional&lt; T &gt;::pointer_type']]],
-  ['get_5fptr',['get_ptr',['../classopt_1_1Optional.html#a0c797ab229d9af56771d1ce79f2feafb',1,'opt::Optional::get_ptr() const'],['../classopt_1_1Optional.html#af6e888b587123213a51c906b41cb6fc4',1,'opt::Optional::get_ptr()']]]
+  ['emplace',['emplace',['../classopt_1_1Optional.html#ac50601ca660f858e9e1da8a47af4ed5c',1,'opt::Optional']]]
 ];
