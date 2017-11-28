@@ -1,40 +1,53 @@
 ## Overview
-A header only, C++14 implementation of the Boost::Optional library.
+A header only implementation of the Boost::Optional Library.
 
-Optional objects wrap any type and allow it to occupy a 'null' state. The
-status of the object can be queried with an explicit bool conversion. If true,
-the Optional object is valid and can be accessed through a dereference. If
-false, the object is in a null(empty) state.
+The Optional template class provides an interface for any type to allow its
+objects to optionally contain a value. This is useful for a variety of reasons:
+- Templated type does not need a default constructor.
+- It expresses its intent and makes code more readable than pointers or other
+work arounds such as `std::pair<T, bool>`.
+- Expensive to construct objects are not created if not needed.
+- Allocates memory on the stack.
 
-Optional objects are stack allocated. This implementation uses considerably less
-memory per object than the Boost::optional implementation(around half as much).
+Optional objects can be queried for validity by an explicit conversion to bool.
+To access the underlying object, the dereference `operator*` can be used, or
+`operator->` provides access to the underlying object’s members.
 
 ## Code Example
-    opt::Optional<int> opt_int;
-    if (opt_int) {
-        std::cout << "This is never reached.\n";
-    } else {
-        *opt_int += 7;
-    }
+```cpp
+opt::Optional<int> opt_int;
+if (opt_int) {
+    std::cout << "This is never reached.\n";
+} else {
+    *opt_int += 7;
+}
 
-    opt::Optional<std::string> opt_str{"Hello, World!"};
-    if (opt_str) {
-        std::cout << *opt_str << " is " << opt_str->size() << " bytes long.\n";
-    } else {
-        std::cout << "This is never reached.\n";
-    }
+opt::Optional<std::string> opt_str{"Hello, World!"};
+if (opt_str) {
+    std::cout << *opt_str << " is " << opt_str->size() << " bytes long.\n";
+} else {
+    std::cout << "This is never reached.\n";
+}
 
-    opt::Optional<char> opt_char{opt::none};
-    if (!opt_char) {
-        std::cout << "opt_char was initialized empty with opt::none.\n";
-    }
+opt::Optional<char> opt_char{opt::none};
+if (!opt_char) {
+    std::cout << "opt_char was initialized empty with opt::none.\n";
+}
+```
 
 ## Motivation
-This implementation was created for personal practice and for use in
+This implementation was created for for use in
 [CPPurses](https://github.com/a-n-t-h-o-n-y/CPPurses).
 
 ## Installation
-CMakeLists.txt included, it will generate files to install and build tests.
+CMakeLists.txt included, it will generate files to install and build tests with:
+```
+mkdir build && cd build
+cmake ..            # generate make files
+make                # build tests
+ctest               # run tests
+sudo make install   # install header files to system include directory
+```
 
 ## Documentation
 Doxygen documentation can be found [here](
