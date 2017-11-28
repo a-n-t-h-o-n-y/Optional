@@ -92,8 +92,14 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">Optional Library </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>A header only, C++14 implementation of the Boost::Optional library.</p>
-<p>Optional objects wrap any type and allow them to occupy a 'null' state. The status of the object can be queried with an explicit bool conversion. If true, the Optional object is valid and can be accessed through a dereference. If false, the object is in a null(empty) state. </p>
+<div class="textblock"><p>A header only implementation of the Boost::Optional Library.</p>
+<p>The Optional template class provides an interface for any type to allow its objects to optionally contain a value. This is useful for a variety of reasons:</p><ul>
+<li>Templated type does not need a default constructor.</li>
+<li>It expresses its intent and makes code more readable than pointers or other work arounds such as std::pair&lt;T, bool&gt;.</li>
+<li>Expensive to construct objects are not created if not needed.</li>
+<li>Allocates memory on the stack.</li>
+</ul>
+<p>Optional objects can be queried for validity by an explicit conversion to bool. To access the underlying object, the dereference operator* can be used, or operator-&gt; provides access to the underlying object’s members. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
