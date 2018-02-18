@@ -30,12 +30,7 @@ namespace opt {
 template <typename T>
 class Optional {
    public:
-    using Value_t = T;
-    using Reference_t = T&;
-    using Const_reference_t = const T&;
-    using Rval_reference_t = T&&;
-    using Pointer_t = T*;
-    using Pointer_const_t = const T*;
+    using Value_type = T;
 
     /// \brief Default constructs an Optional.
     ///
@@ -53,8 +48,8 @@ class Optional {
     ///
     /// *this is initialized with a copy of \p value.
     /// \param value    Value which is copied into the Optional.
-    explicit Optional(Const_reference_t value) noexcept(
-        std::is_nothrow_copy_constructible<Value_t>::value) {
+    explicit Optional(const T& value) noexcept(
+        std::is_nothrow_copy_constructible<T>::value) {
         this->construct(value);
     }
 
@@ -62,8 +57,8 @@ class Optional {
     ///
     /// \p value is move constructed into the Optional object.
     /// \param value    Value which is moved into the Optional.
-    explicit Optional(Rval_reference_t value) noexcept(
-        std::is_nothrow_move_constructible<Value_t>::value) {
+    explicit Optional(T&& value) noexcept(
+        std::is_nothrow_move_constructible<T>::value) {
         this->construct(std::move(value));
     }
 
@@ -73,8 +68,8 @@ class Optional {
     /// *this is not initialized.
     /// \param condition    Determines if Optional is initialized or not.
     /// \param value        Object copied into *this if \p condition is true.
-    Optional(bool condition, Const_reference_t value) noexcept(
-        std::is_nothrow_copy_constructible<Value_t>::value) {
+    Optional(bool condition, const T& value) noexcept(
+        std::is_nothrow_copy_constructible<T>::value) {
         if (condition) {
             this->construct(value);
         }
@@ -86,15 +81,15 @@ class Optional {
     /// *this is not initialized.
     /// \param condition    Determines if Optional is initialized or not.
     /// \param value        Object moved into *this if \p condition is true.
-    Optional(bool condition, Rval_reference_t value) noexcept(
-        std::is_nothrow_move_constructible<Value_t>::value) {
+    Optional(bool condition,
+             T&& value) noexcept(std::is_nothrow_move_constructible<T>::value) {
         if (condition) {
             this->construct(std::move(value));
         }
     }
 
     /// Destructs the underlying object
-    ~Optional() noexcept(std::is_nothrow_destructible<Value_t>::value) {
+    ~Optional() noexcept(std::is_nothrow_destructible<T>::value) {
         this->destroy();
     }
 
@@ -105,7 +100,7 @@ class Optional {
     /// constructed.
     /// \param rhs  Optional to copy, T must be copy constructible.
     Optional(const Optional& rhs) noexcept(
-        std::is_nothrow_copy_constructible<Value_t>::value) {
+        std::is_nothrow_copy_constructible<T>::value) {
         if (rhs.initialized_) {
             this->construct(rhs.get());
         }
@@ -117,7 +112,7 @@ class Optional {
     /// *this, and \p rhs will be empty, otherwise *this is default constructed.
     /// \param rhs  Optional to move, T must be move constructible.
     Optional(Optional&& rhs) noexcept(
-        std::is_nothrow_move_constructible<Value_t>::value) {
+        std::is_nothrow_move_constructible<T>::value) {
         if (rhs.initialized_) {
             this->construct(std::move(rhs.get()));
             rhs.initialized_ = false;
@@ -131,7 +126,7 @@ class Optional {
     /// \param rhs  Object to be copied into *this.
     template <typename U>
     explicit Optional(const Optional<U>& rhs) noexcept(
-        std::is_nothrow_constructible<Value_t, const U&>::value) {
+        std::is_nothrow_constructible<T, const U&>::value) {
         if (rhs.initialized_) {
             this->construct(rhs.get());
         }
@@ -145,7 +140,7 @@ class Optional {
     /// \param rhs  Object to be moved into *this.
     template <typename U>
     explicit Optional(Optional<U>&& rhs) noexcept(
-        std::is_nothrow_constructible<Value_t, U&&>::value) {
+        std::is_nothrow_constructible<T, U&&>::value) {
         if (rhs.initialized_) {
             this->construct(std::move(rhs.get()));
             rhs.initialized_ = false;
@@ -159,9 +154,9 @@ class Optional {
     /// \param rhs  Object to be copied into *this.
     Optional& operator=(const Optional& rhs) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_copy_constructible<Value_t>,
-            std::is_nothrow_copy_assignable<Value_t>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_copy_constructible<T>,
+            std::is_nothrow_copy_assignable<T>>::value) {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = rhs.get();
         } else if (!this->is_initialized() && rhs.is_initialized()) {
@@ -180,9 +175,9 @@ class Optional {
     /// \param rhs  Object to be moved into *this.
     Optional& operator=(Optional&& rhs) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_move_constructible<Value_t>,
-            std::is_nothrow_move_assignable<Value_t>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_move_constructible<T>,
+            std::is_nothrow_move_assignable<T>>::value) {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = std::move(rhs.get());
         } else if (!this->is_initialized() && rhs.is_initialized()) {
@@ -202,9 +197,9 @@ class Optional {
     template <typename U>
     Optional& operator=(const Optional<U>& rhs) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_copy_constructible<Value_t>,
-            std::is_nothrow_assignable<Value_t, const U&>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_copy_constructible<T>,
+            std::is_nothrow_assignable<T, const U&>>::value) {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = rhs.get();
         } else if (!this->is_initialized() && rhs.is_initialized()) {
@@ -223,9 +218,9 @@ class Optional {
     template <typename U>
     Optional& operator=(Optional<U>&& rhs) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_move_constructible<Value_t>,
-            std::is_nothrow_assignable<Value_t, U&&>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_move_constructible<T>,
+            std::is_nothrow_assignable<T, U&&>>::value) {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = std::move(rhs.get());
         } else if (!this->is_initialized() && rhs.is_initialized()) {
@@ -242,11 +237,11 @@ class Optional {
     /// If *this is initialized, the object held is destroyed and replaced
     /// with a copy of \p value. T must be copy constructible. \param value
     /// Value to be copied into *this.
-    Optional& operator=(Const_reference_t value) noexcept(
+    Optional& operator=(const T& value) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_copy_constructible<Value_t>,
-            std::is_nothrow_copy_assignable<Value_t>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_copy_constructible<T>,
+            std::is_nothrow_copy_assignable<T>>::value) {
         if (this->is_initialized()) {
             this->get() = value;
         } else {
@@ -260,11 +255,11 @@ class Optional {
     /// If *this is initialized, the object held is destroyed and replaced
     /// with \p value. T must be move constructible. \param value    Value
     /// to be moved into *this.
-    Optional& operator=(Rval_reference_t value) noexcept(
+    Optional& operator=(T&& value) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_move_constructible<Value_t>,
-            std::is_nothrow_move_assignable<Value_t>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_move_constructible<T>,
+            std::is_nothrow_move_assignable<T>>::value) {
         if (this->is_initialized()) {
             this->get() = std::move(value);
         } else {
@@ -280,7 +275,7 @@ class Optional {
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
     Optional& operator=(None_t) noexcept(
-        std::is_nothrow_destructible<Value_t>::value) {
+        std::is_nothrow_destructible<T>::value) {
         this->destroy();
         return *this;
     }
@@ -292,8 +287,8 @@ class Optional {
     template <typename... Args>
     void emplace(Args&&... args) noexcept(
         std::experimental::conjunction<
-            std::is_nothrow_destructible<Value_t>,
-            std::is_nothrow_constructible<Value_t, Args...>>::value) {
+            std::is_nothrow_destructible<T>,
+            std::is_nothrow_constructible<T, Args...>>::value) {
         this->destroy();
         this->emplace_construct(std::forward<Args>(args)...);
     }
@@ -302,50 +297,50 @@ class Optional {
     ///
     /// Undefined if *this is uninitialized.
     /// \returns const reference to the underlying object.
-    Const_reference_t get() const { return storage_.ref(); }
+    const T& get() const { return storage_.ref(); }
 
     /// \brief Returns a reference to the held value.
     ///
     /// Undefined if *this is uninitialized.
     /// \returns Reference to the underlying object.
-    Reference_t get() { return storage_.ref(); }
+    T& get() { return storage_.ref(); }
 
     /// \brief Member access overload to underlying object.
     ///
     /// Undefined if *this is uninitialized.
     /// \returns const pointer to the underlying object.
-    Pointer_const_t operator->() const { return storage_.ptr_ref(); }
+    const T* operator->() const { return storage_.ptr_ref(); }
 
     /// \brief Member access overload to underlying object.
     ///
     /// Undefined if *this is uninitialized.
     /// \returns Pointer to the underlying object.
-    Pointer_t operator->() { return storage_.ptr_ref(); }
+    T* operator->() { return storage_.ptr_ref(); }
 
     /// \brief Provides direct access to the underlying object.
     ///
     /// Undefined if *this is uninitialized. Overloaded on const &.
     /// \returns const l-value reference to the held object.
-    Const_reference_t operator*() const & { return storage_.ref(); }
+    const T& operator*() const & { return storage_.ref(); }
 
     /// \brief Provides direct access to the underlying object.
     ///
     /// Undefined if *this is uninitialized. Overloaded on &.
     /// \returns l-value reference to the held object.
-    Reference_t operator*() & { return storage_.ref(); }
+    T& operator*() & { return storage_.ref(); }
 
     /// \brief Provides direct access to the underlying object.
     ///
     /// Undefined if *this is uninitialized. Overloaded on &&.
     /// \returns r-value reference to the underlying object
-    Rval_reference_t operator*() && { return std::move(storage_.ref()); }
+    T&& operator*() && { return std::move(storage_.ref()); }
 
     /// \brief Direct access to the underlying object, or throw exception.
     ///
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// const &.
     /// \returns const l-value reference to the underlying object.
-    Const_reference_t value() const & {
+    const T& value() const & {
         if (initialized_) {
             return storage_.ref();
         }
@@ -357,7 +352,7 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &.
     /// \returns l-value reference to the underlying object.
-    Reference_t value() & {
+    T& value() & {
         if (initialized_) {
             return storage_.ref();
         }
@@ -369,7 +364,7 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &&.
     /// \returns r-value reference to the underlying object.
-    Rval_reference_t value() && {
+    T&& value() && {
         if (initialized_) {
             return std::move(storage_.ref());
         }
@@ -383,7 +378,7 @@ class Optional {
     /// \param	val Value to be returned if *this is uninitialized.
     /// \returns Either the value stored in *this, or \p val.
     template <typename U>
-    Value_t value_or(U&& val) const & {
+    T value_or(U&& val) const & {
         if (initialized_) {
             return storage_.ref();
         }
@@ -397,7 +392,7 @@ class Optional {
     /// \param	val Value to be returned if *this is uninitialized.
     /// \returns Either the value stored in *this, or \p val.
     template <typename U>
-    Value_t value_or(U&& val) && {
+    T value_or(U&& val) && {
         if (initialized_) {
             initialized_ = false;
             return std::move(storage_.ref());
@@ -414,7 +409,7 @@ class Optional {
     ///	\param	func    Function with signature T func().
     ///	\returns The value stored in *this, or the result of \p func().
     template <typename F>
-    Value_t value_or_eval(F f) const & {
+    T value_or_eval(F f) const & {
         if (initialized_) {
             return storage_.ref();
         }
@@ -430,7 +425,7 @@ class Optional {
     ///	\param	func    Function with signature T func().
     ///	\returns The value stored in *this, or the result of \p func().
     template <typename F>
-    Value_t value_or_eval(F f) && {
+    T value_or_eval(F f) && {
         if (initialized_) {
             initialized_ = false;
             return std::move(storage_.ref());
@@ -442,13 +437,13 @@ class Optional {
     ///
     /// *this still owns the object, do not delete the object via this
     /// pointer. \returns const pointer to the underlying object.
-    Pointer_const_t get_ptr() const { return storage_.ptr_ref(); }
+    const T* get_ptr() const { return storage_.ptr_ref(); }
 
     /// \brief Access to the underlying object's pointer.
     ///
     /// *this still owns the object, do not delete the object via this
     /// pointer. \returns Pointer to the underlying object.
-    Pointer_t get_ptr() { return storage_.ptr_ref(); }
+    T* get_ptr() { return storage_.ptr_ref(); }
 
     /// \brief Safe conversion to bool.
     /// \returns True if object contains a value, false otherwise.
@@ -469,19 +464,19 @@ class Optional {
     bool initialized_ = false;
     detail::Aligned_storage<T> storage_;
 
-    void construct(const Value_t& value) {
-        ::new (storage_.address()) Value_t(value);
+    void construct(const T& value) {
+        ::new (storage_.address()) T(value);
         initialized_ = true;
     }
 
-    void construct(Rval_reference_t value) {
-        ::new (storage_.address()) Value_t(std::move(value));
+    void construct(T&& value) {
+        ::new (storage_.address()) T(std::move(value));
         initialized_ = true;
     }
 
     template <typename... Args>
     void emplace_construct(Args&&... args) {
-        ::new (storage_.address()) Value_t(std::forward<Args>(args)...);
+        ::new (storage_.address()) T(std::forward<Args>(args)...);
         initialized_ = true;
     }
 
@@ -608,15 +603,14 @@ T* get(Optional<T>* opt) {
 /// \param opt  Optional object to get underlying object's pointer from.
 /// \returns Pointer to the underlying object.
 template <typename T>
-auto get_pointer(const Optional<T>& opt) ->
-    typename Optional<T>::Pointer_const_t {
+const T* get_pointer(const Optional<T>& opt) {
     return opt.get_ptr();
 }
 
 /// \param opt  Optional object to get underlying object's pointer from.
 /// \returns Pointer to the underlying object.
 template <typename T>
-auto get_pointer(Optional<T>& opt) -> typename Optional<T>::Pointer_t {
+T* get_pointer(Optional<T>& opt) {
     return opt.get_ptr();
 }
 
