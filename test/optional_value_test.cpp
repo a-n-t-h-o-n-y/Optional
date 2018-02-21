@@ -1,28 +1,28 @@
-#include <optional/bad_optional_access.hpp>
-#include <optional/none.hpp>
-#include <optional/optional.hpp>
+#include <string>
+#include <utility>
 
 #include <gtest/gtest.h>
 
-#include <string>
-#include <utility>
+#include <optional/bad_optional_access.hpp>
+#include <optional/none.hpp>
+#include <optional/optional.hpp>
+// #include <optional/optional_value.hpp>
 
 using opt::Bad_optional_access;
 using opt::Optional;
 using opt::none;
 
-TEST(OptionalTest, DefaultConstructor) {
+TEST(OptionalValueTest, DefaultConstructor) {
     Optional<int> opt{};
-    Optional<void> ov;
     EXPECT_FALSE(bool(opt));
 }
 
-TEST(OptionalTest, NoneTypeConstructor) {
+TEST(OptionalValueTest, NoneTypeConstructor) {
     Optional<int> opt{none};
     EXPECT_FALSE(bool(opt));
 }
 
-TEST(OptionalTest, ConstLValueConstructor) {
+TEST(OptionalValueTest, ConstLValueConstructor) {
     int i = 5;
     Optional<int> opt1{i};
     ASSERT_TRUE(bool(opt1));
@@ -44,7 +44,7 @@ TEST(OptionalTest, ConstLValueConstructor) {
     EXPECT_EQ('k', *opt4);
 }
 
-TEST(OptionalTest, RValueConstructor) {
+TEST(OptionalValueTest, RValueConstructor) {
     Optional<int> opt1{7};
     ASSERT_TRUE(bool(opt1));
     EXPECT_EQ(7, *opt1);
@@ -59,7 +59,7 @@ TEST(OptionalTest, RValueConstructor) {
     EXPECT_EQ(-8, *opt3);
 }
 
-TEST(OptionalTest, ConditionalConstructor) {
+TEST(OptionalValueTest, ConditionalConstructor) {
     const char c = 'k';
     const char& c_r = c;
     bool cond_t = true;
@@ -84,7 +84,7 @@ TEST(OptionalTest, ConditionalConstructor) {
     EXPECT_EQ('k', *opt5);
 }
 
-TEST(OptionalTest, CopyConstructor) {
+TEST(OptionalValueTest, CopyConstructor) {
     Optional<int> opt1{7};
     Optional<int> opt2{opt1};
     ASSERT_TRUE(bool(opt2));
@@ -95,7 +95,7 @@ TEST(OptionalTest, CopyConstructor) {
     EXPECT_FALSE(bool(opt4));
 }
 
-TEST(OptionalTest, MoveConstructor) {
+TEST(OptionalValueTest, MoveConstructor) {
     Optional<int> opt1{9};
     Optional<int> opt2{std::move(opt1)};
     ASSERT_TRUE(bool(opt2));
@@ -118,7 +118,7 @@ TEST(OptionalTest, MoveConstructor) {
     EXPECT_FALSE(bool(opt7));
 }
 
-TEST(OptionalTest, FromConvertibleTypeCopyConstructor) {
+TEST(OptionalValueTest, FromConvertibleTypeCopyConstructor) {
     Optional<int> opt_int{7};
     Optional<double> opt_dbl{opt_int};
 
@@ -136,7 +136,7 @@ TEST(OptionalTest, FromConvertibleTypeCopyConstructor) {
     EXPECT_FALSE(bool(opt_int2));
 }
 
-TEST(OptionalTest, FromConvertibleTypeMoveConstructor) {
+TEST(OptionalValueTest, FromConvertibleTypeMoveConstructor) {
     Optional<int> opt_int{2};
     Optional<double> opt_dbl{std::move(opt_int)};
     ASSERT_TRUE(bool(opt_dbl));
@@ -156,7 +156,7 @@ TEST(OptionalTest, FromConvertibleTypeMoveConstructor) {
     EXPECT_FALSE(bool(opt_c_str));
 }
 
-TEST(OptionalTest, NoneAssignementOperator) {
+TEST(OptionalValueTest, NoneAssignementOperator) {
     Optional<int> opt{8};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(8, *opt);
@@ -165,7 +165,7 @@ TEST(OptionalTest, NoneAssignementOperator) {
     EXPECT_FALSE(bool(opt));
 }
 
-TEST(OptionalTest, LValueTAssignmentOperator) {
+TEST(OptionalValueTest, LValueTAssignmentOperator) {
     Optional<int> opt{-77};
     int i = 45;
     opt = i;
@@ -178,7 +178,7 @@ TEST(OptionalTest, LValueTAssignmentOperator) {
     EXPECT_EQ(99, *opt);
 }
 
-TEST(OptionalTest, RValueTAssignmentOperator) {
+TEST(OptionalValueTest, RValueTAssignmentOperator) {
     Optional<int> opt1{};
     opt1 = 99;
     ASSERT_TRUE(bool(opt1));
@@ -190,7 +190,7 @@ TEST(OptionalTest, RValueTAssignmentOperator) {
     EXPECT_EQ(88, *opt2);
 }
 
-TEST(OptionalTest, CopyAssignmentOperator) {
+TEST(OptionalValueTest, CopyAssignmentOperator) {
     Optional<int> opt1{99};
     Optional<int> opt2{7};
 
@@ -208,7 +208,7 @@ TEST(OptionalTest, CopyAssignmentOperator) {
     EXPECT_FALSE(bool(opt1));
 }
 
-TEST(OptionalTest, MoveAssignmentOperator) {
+TEST(OptionalValueTest, MoveAssignmentOperator) {
     Optional<int> opt1{5};
     Optional<int> opt2{};
 
@@ -225,7 +225,7 @@ TEST(OptionalTest, MoveAssignmentOperator) {
     EXPECT_EQ(9, *opt3);
 }
 
-TEST(OptionalTest, ConversionCopyAssignmentConstructor) {
+TEST(OptionalValueTest, ConversionCopyAssignmentConstructor) {
     Optional<int> opt_int{7};
     Optional<double> opt_dbl{10.0};
 
@@ -257,7 +257,7 @@ TEST(OptionalTest, ConversionCopyAssignmentConstructor) {
     EXPECT_FALSE(bool(opt_dbl2));
 }
 
-TEST(OptionalTest, ConversionMoveAssignmentOperator) {
+TEST(OptionalValueTest, ConversionMoveAssignmentOperator) {
     Optional<int> opt_int{6};
     Optional<double> opt_dbl{8.4};
 
@@ -277,7 +277,7 @@ TEST(OptionalTest, ConversionMoveAssignmentOperator) {
     EXPECT_FALSE(bool(opt_dbl));
 }
 
-TEST(OptionalTest, Emplace) {
+TEST(OptionalValueTest, Emplace) {
     Optional<int> opt1{};
     opt1.emplace(6);
 
@@ -300,13 +300,13 @@ TEST(OptionalTest, Emplace) {
     EXPECT_EQ("", *opt2);
 }
 
-TEST(OptionalTest, ConstGet) {
+TEST(OptionalValueTest, ConstGet) {
     const Optional<int> opt{9};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(9, opt.get());
 }
 
-TEST(OptionalTest, Get) {
+TEST(OptionalValueTest, Get) {
     Optional<int> opt{7};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(7, opt.get());
@@ -316,13 +316,13 @@ TEST(OptionalTest, Get) {
     EXPECT_EQ(9, opt.get());
 }
 
-TEST(OptionalTest, ConstArrowOperator) {
+TEST(OptionalValueTest, ConstArrowOperator) {
     const Optional<std::string> opt{"Hello, World!"};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(13, opt->size());
 }
 
-TEST(OptionalTest, ArrowOperator) {
+TEST(OptionalValueTest, ArrowOperator) {
     Optional<std::string> opt{"Hello"};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(5, opt->size());
@@ -330,7 +330,7 @@ TEST(OptionalTest, ArrowOperator) {
     EXPECT_EQ("Hello, World!", *opt);
 }
 
-TEST(OptionalTest, ConstLValueDereferenceOperator) {
+TEST(OptionalValueTest, ConstLValueDereferenceOperator) {
     const Optional<const int> opt_int{88};
     ASSERT_TRUE(bool(opt_int));
     EXPECT_EQ(88, *opt_int);
@@ -340,7 +340,7 @@ TEST(OptionalTest, ConstLValueDereferenceOperator) {
     EXPECT_EQ(6, (*opt_string).size());
 }
 
-TEST(OptionalTest, LValueDereferenceOperator) {
+TEST(OptionalValueTest, LValueDereferenceOperator) {
     Optional<std::string> opt_string{"Hello"};
     ASSERT_TRUE(bool(opt_string));
     EXPECT_EQ(5, (*opt_string).size());
@@ -350,7 +350,7 @@ TEST(OptionalTest, LValueDereferenceOperator) {
     EXPECT_EQ("Hello, World!", *opt_string);
 }
 
-TEST(OptionalTest, RValueDereferenceOperator) {
+TEST(OptionalValueTest, RValueDereferenceOperator) {
     EXPECT_EQ(6, (*Optional<std::string>{"Hello!"}).size());
     EXPECT_EQ(77, *Optional<int>{77});
 
@@ -360,7 +360,7 @@ TEST(OptionalTest, RValueDereferenceOperator) {
     // EXPECT_EQ(0, opt->size()); // seg-fault
 }
 
-TEST(OptionalTest, ConstLValueValueMethod) {
+TEST(OptionalValueTest, ConstLValueValueMethod) {
     const Optional<int> opt1{};
     EXPECT_THROW(opt1.value(), Bad_optional_access);
 
@@ -370,7 +370,7 @@ TEST(OptionalTest, ConstLValueValueMethod) {
     EXPECT_EQ(8, opt2.value());
 }
 
-TEST(OptionalTest, LValueValueMethod) {
+TEST(OptionalValueTest, LValueValueMethod) {
     Optional<int> opt1{};
     EXPECT_THROW(opt1.value(), Bad_optional_access);
 
@@ -385,7 +385,7 @@ TEST(OptionalTest, LValueValueMethod) {
     EXPECT_EQ("Hello, World!", *opt_string);
 }
 
-TEST(OptionalTest, RValueValueMethod) {
+TEST(OptionalValueTest, RValueValueMethod) {
     Optional<int> opt1{};
     EXPECT_THROW(std::move(opt1).value(), Bad_optional_access);
     EXPECT_FALSE(bool(opt1));
@@ -403,7 +403,7 @@ TEST(OptionalTest, RValueValueMethod) {
     EXPECT_THROW((Optional<int>{}).value(), Bad_optional_access);
 }
 
-TEST(OptionalTest, ConstLValueValueOr) {
+TEST(OptionalValueTest, ConstLValueValueOr) {
     Optional<int> opt{8};
     ASSERT_TRUE(bool(opt));
     EXPECT_DOUBLE_EQ(8, opt.value_or(7.2));
@@ -416,7 +416,7 @@ TEST(OptionalTest, ConstLValueValueOr) {
     EXPECT_EQ(6, opt_empty.value_or(d));
 }
 
-TEST(OptionalTest, RValueValueOr) {
+TEST(OptionalValueTest, RValueValueOr) {
     Optional<int> opt1{};
     double d = 9.3;
     EXPECT_EQ(9, std::move(opt1).value_or(d));
@@ -438,7 +438,7 @@ double f() {
     return 7.7;
 }
 
-TEST(OptionalTest, ConstLValueValueOrEval) {
+TEST(OptionalValueTest, ConstLValueValueOrEval) {
     Optional<int> opt{5};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(5, opt.value_or_eval([]() { return 8; }));
@@ -452,7 +452,7 @@ TEST(OptionalTest, ConstLValueValueOrEval) {
     EXPECT_EQ(-4, opt.value_or_eval(f));
 }
 
-TEST(OptionalTest, RValueValueOrEval) {
+TEST(OptionalValueTest, RValueValueOrEval) {
     EXPECT_EQ(3, (Optional<int>{3}).value_or_eval([]() { return 8; }));
 
     Optional<int> opt1{};
@@ -463,19 +463,19 @@ TEST(OptionalTest, RValueValueOrEval) {
     EXPECT_EQ(88, std::move(opt2).value_or_eval([]() { return 3; }));
 }
 
-TEST(OptionalTest, ConstGetPtr) {
+TEST(OptionalValueTest, ConstGetPtr) {
     const Optional<std::string> opt{"Hello!"};
     EXPECT_EQ("Hello!", *(opt.get_ptr()));
 }
 
-TEST(OptionalTest, GetPtr) {
+TEST(OptionalValueTest, GetPtr) {
     Optional<std::string> opt{"Hello"};
     EXPECT_EQ("Hello", *(opt.get_ptr()));
     opt.get_ptr()->append(", World!");
     EXPECT_EQ("Hello, World!", *(opt.get_ptr()));
 }
 
-TEST(OptionalTest, OperatorBool) {
+TEST(OptionalValueTest, OperatorBool) {
     const Optional<int> opt1{8};
     EXPECT_TRUE(bool(opt1));
 
@@ -496,7 +496,7 @@ TEST(OptionalTest, OperatorBool) {
     EXPECT_FALSE(bool(std::move(opt6)));
 }
 
-TEST(OptionalTest, OperatorNotEqual) {
+TEST(OptionalValueTest, OperatorNotEqual) {
     const Optional<int> opt1{8};
     EXPECT_FALSE(!opt1);
 
@@ -517,7 +517,7 @@ TEST(OptionalTest, OperatorNotEqual) {
     EXPECT_TRUE(!std::move(opt6));
 }
 
-TEST(OptionalTest, OperatorEqualTo) {
+TEST(OptionalValueTest, OperatorEqualTo) {
     Optional<int> opt1{5};
     Optional<int> opt2{5};
 
@@ -540,7 +540,7 @@ TEST(OptionalTest, OperatorEqualTo) {
     EXPECT_TRUE(opt3 == opt3);
 }
 
-TEST(OptionalTest, OperatorNotEqualTo) {
+TEST(OptionalValueTest, OperatorNotEqualTo) {
     Optional<int> opt1{5};
     Optional<int> opt2{5};
 
@@ -563,7 +563,7 @@ TEST(OptionalTest, OperatorNotEqualTo) {
     EXPECT_FALSE(opt3 != opt3);
 }
 
-TEST(OptionalTest, OperatorLessThan) {
+TEST(OptionalValueTest, OperatorLessThan) {
     Optional<int> opt1{1};
     Optional<int> opt2{2};
     Optional<int> opt3{};
@@ -580,7 +580,7 @@ TEST(OptionalTest, OperatorLessThan) {
     EXPECT_FALSE(opt1 < opt3);
 }
 
-TEST(OptionalTest, OperatorGreaterThan) {
+TEST(OptionalValueTest, OperatorGreaterThan) {
     Optional<int> opt1{1};
     Optional<int> opt2{2};
     Optional<int> opt3{};
@@ -597,7 +597,7 @@ TEST(OptionalTest, OperatorGreaterThan) {
     EXPECT_TRUE(opt1 > opt3);
 }
 
-TEST(OptionalTest, OperatorLessThanOrEqualTo) {
+TEST(OptionalValueTest, OperatorLessThanOrEqualTo) {
     Optional<int> opt1{1};
     Optional<int> opt2{2};
     Optional<int> opt3{};
@@ -617,7 +617,7 @@ TEST(OptionalTest, OperatorLessThanOrEqualTo) {
     EXPECT_FALSE(opt1 <= opt3);
 }
 
-TEST(OptionalTest, OperatorGreaterThanOrEqualTo) {
+TEST(OptionalValueTest, OperatorGreaterThanOrEqualTo) {
     Optional<int> opt1{1};
     Optional<int> opt2{2};
     Optional<int> opt3{};
@@ -637,7 +637,7 @@ TEST(OptionalTest, OperatorGreaterThanOrEqualTo) {
     EXPECT_TRUE(opt1 >= opt3);
 }
 
-TEST(OptionalTest, OperatorEqualToNoneT) {
+TEST(OptionalValueTest, OperatorEqualToNoneT) {
     Optional<int> opt1{7};
     Optional<int> opt2{};
 
@@ -654,7 +654,7 @@ TEST(OptionalTest, OperatorEqualToNoneT) {
     EXPECT_TRUE(none == opt1);
 }
 
-TEST(OptionalTest, OperatorNotEqualToNoneT) {
+TEST(OptionalValueTest, OperatorNotEqualToNoneT) {
     Optional<int> opt1{7};
     Optional<int> opt2{};
 
@@ -671,7 +671,7 @@ TEST(OptionalTest, OperatorNotEqualToNoneT) {
     EXPECT_FALSE(none != opt1);
 }
 
-TEST(OptionalTest, GetConstFreeFunction) {
+TEST(OptionalValueTest, GetConstFreeFunction) {
     int i = 7;
     const Optional<int> opt(i);
 
@@ -679,7 +679,7 @@ TEST(OptionalTest, GetConstFreeFunction) {
     EXPECT_EQ(7, get(opt));
 }
 
-TEST(OptionalTest, GetFreeFunction) {
+TEST(OptionalValueTest, GetFreeFunction) {
     int i = 7;
     Optional<int> opt(i);
 
@@ -691,13 +691,13 @@ TEST(OptionalTest, GetFreeFunction) {
     EXPECT_EQ(3, get(opt));
 }
 
-TEST(OptionalTest, ConstGetFromPointerFreeFunction) {
+TEST(OptionalValueTest, ConstGetFromPointerFreeFunction) {
     const Optional<int> opt{4};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(4, *(get(&opt)));
 }
 
-TEST(OptionalTest, GetFromPointerFreeFunction) {
+TEST(OptionalValueTest, GetFromPointerFreeFunction) {
     Optional<int> opt{4};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(4, *(get(&opt)));
@@ -706,13 +706,13 @@ TEST(OptionalTest, GetFromPointerFreeFunction) {
     EXPECT_EQ(5, opt.get());
 }
 
-TEST(OptionalTest, ConstGetPointerFreeFunction) {
+TEST(OptionalValueTest, ConstGetPointerFreeFunction) {
     const Optional<int> opt{8};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(8, *get_pointer(opt));
 }
 
-TEST(OptionalTest, GetPointerFreeFunction) {
+TEST(OptionalValueTest, GetPointerFreeFunction) {
     Optional<int> opt{8};
     ASSERT_TRUE(bool(opt));
     EXPECT_EQ(8, *get_pointer(opt));
@@ -722,7 +722,7 @@ TEST(OptionalTest, GetPointerFreeFunction) {
     EXPECT_EQ(4, opt.get());
 }
 
-TEST(OptionalTest, Swap) {
+TEST(OptionalValueTest, Swap) {
     using std::swap;
     Optional<int> opt1{};
     Optional<int> opt2{};

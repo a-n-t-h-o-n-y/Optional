@@ -9,7 +9,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(TEST_SOURCES 
     "test/none_test.cpp"
-    "test/optional_test.cpp"
+    "test/optional_value_test.cpp"
+    "test/optional_void_test.cpp"
+    "test/optional_reference_test.cpp"
     "test/aligned_storage_test.cpp"
 )
 
