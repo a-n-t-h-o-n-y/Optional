@@ -8,9 +8,8 @@ namespace opt {
 template <>
 class Optional<void> {
    public:
-    bool is_initialized() const { return false; }
-    explicit operator bool() const noexcept { return this->is_initialized(); }
-    bool operator!() const noexcept { return !this->is_initialized(); }
+    explicit operator bool() const noexcept { return false; }
+    bool operator!() const noexcept { return true; }
 };
 
 }  // namespace opt

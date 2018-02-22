@@ -416,14 +416,14 @@ class Optional {
     /// \returns Opposite of operator bool.
     bool operator!() const noexcept { return !this->is_initialized(); }
 
-    bool is_initialized() const { return initialized_; }
-
     template <typename U>
     friend class Optional;
 
    private:
     bool initialized_{false};
     opt::detail::Aligned_storage<T> storage_;
+
+    bool is_initialized() const { return initialized_; }
 
     void construct(const T& value) {
         ::new (storage_.address()) T(value);
