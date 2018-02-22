@@ -24,7 +24,7 @@ class Optional<T&> {
    public:
     Optional() noexcept = default;
 
-    explicit Optional(opt::None_t) noexcept {}
+    Optional(opt::None_t) noexcept {}
 
     // L-value Reference Constructor
     template <typename R, If_compatible<R, T> = 0>

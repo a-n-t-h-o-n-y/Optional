@@ -39,13 +39,13 @@ class Optional {
     /// *this is _not_ initialized, T's default constrcutor is _not_ called.
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
-    explicit Optional(opt::None_t) noexcept : initialized_{false} {}
+    Optional(opt::None_t) noexcept : initialized_{false} {}
 
     /// \brief Constructs an initialized Optional from a T object.
     ///
     /// *this is initialized with a copy of \p value.
     /// \param value    Value which is copied into the Optional.
-    explicit Optional(const T& value) noexcept(is_nt_cc<T>()) {
+    Optional(const T& value) noexcept(is_nt_cc<T>()) {
         this->construct(value);
     }
 
@@ -53,7 +53,7 @@ class Optional {
     ///
     /// \p value is move constructed into the Optional object.
     /// \param value    Value which is moved into the Optional.
-    explicit Optional(T&& value) noexcept(is_nt_mc<T>()) {
+    Optional(T&& value) noexcept(is_nt_mc<T>()) {
         this->construct(std::move(value));
     }
 
