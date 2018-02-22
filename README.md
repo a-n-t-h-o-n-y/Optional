@@ -15,12 +15,13 @@ To access the underlying object, the dereference `operator*` can be used, or
 
 ## Code Example
 ```cpp
+#include <ctime>
+#include <iostream>
 #include <optional/optional.hpp>
-#include <time.h>
 using opt::Optional;
 
-Optional<time_t> get_time_if_even() {
-    auto t = time(nullptr);
+Optional<std::time_t> get_time_if_even() {
+    auto t = std::time(nullptr);
     if (t % 2 == 0) {
         return t;
     } else {
