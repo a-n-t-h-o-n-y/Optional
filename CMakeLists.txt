@@ -16,7 +16,7 @@ set(TEST_SOURCES
     "test/optional_free_functions_test.cpp"
 )
 
-add_executable(testoptional ${TEST_SOURCES})
+add_executable(testoptional EXCLUDE_FROM_ALL ${TEST_SOURCES})
 
 find_package(GTest REQUIRED)
 if (GTEST_FOUND)
