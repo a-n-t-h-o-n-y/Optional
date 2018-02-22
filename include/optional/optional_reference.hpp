@@ -3,6 +3,8 @@
 #include <type_traits>
 #include <utility>
 
+#include <optional/bad_optional_access.hpp>
+#include <optional/none.hpp>
 #include <optional/optional_fwd.hpp>
 
 namespace opt {
@@ -22,7 +24,7 @@ class Optional<T&> {
    public:
     Optional() noexcept = default;
 
-    explicit Optional(None_t) noexcept {}
+    explicit Optional(opt::None_t) noexcept {}
 
     // L-value Reference Constructor
     template <typename R, If_compatible<R, T> = 0>
@@ -46,7 +48,7 @@ class Optional<T&> {
         }
     }
 
-    Optional& operator=(None_t) noexcept {
+    Optional& operator=(opt::None_t) noexcept {
         if (initialized_) {
             this->destroy();
         }
@@ -95,7 +97,7 @@ class Optional<T&> {
 
     T& value() const {
         if (!*this) {
-            throw Bad_optional_access();
+            throw opt::Bad_optional_access();
         }
         return this->get();
     }

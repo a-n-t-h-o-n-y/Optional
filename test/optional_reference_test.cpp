@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
 #include <optional/bad_optional_access.hpp>
-#include <optional/optional.hpp>
-// #include <optional/optional_reference.hpp>
+#include <optional/none.hpp>
+#include <optional/optional_reference.hpp>
 
 using opt::Optional;
 

@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <optional/optional.hpp>
-// #include <optional/optional_void.hpp>
+#include <optional/optional_void.hpp>
 
 using opt::Optional;
 

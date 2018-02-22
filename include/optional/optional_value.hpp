@@ -1,6 +1,7 @@
 #ifndef OPTIONAL_VALUE_HPP
 #define OPTIONAL_VALUE_HPP
 #include <experimental/type_traits>
+#include <new>
 #include <type_traits>
 #include <utility>
 
@@ -38,7 +39,7 @@ class Optional {
     /// *this is _not_ initialized, T's default constrcutor is _not_ called.
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
-    explicit Optional(None_t) noexcept : initialized_{false} {}
+    explicit Optional(opt::None_t) noexcept : initialized_{false} {}
 
     /// \brief Constructs an initialized Optional from a T object.
     ///
@@ -270,7 +271,7 @@ class Optional {
     /// initialized, the held object is destroyed.
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
-    Optional& operator=(None_t) noexcept(
+    Optional& operator=(opt::None_t) noexcept(
         std::is_nothrow_destructible<T>::value) {
         this->destroy();
         return *this;
@@ -458,7 +459,7 @@ class Optional {
 
    private:
     bool initialized_{false};
-    detail::Aligned_storage<T> storage_;
+    opt::detail::Aligned_storage<T> storage_;
 
     void construct(const T& value) {
         ::new (storage_.address()) T(value);
