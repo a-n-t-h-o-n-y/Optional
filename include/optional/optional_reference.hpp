@@ -129,12 +129,12 @@ class Optional<T&> {
     T* ref_{nullptr};
 
     template <typename R>
-    void construct(R&& value) {
+    void construct(R&& value) noexcept {
         ref_ = &value;
         initialized_ = true;
     }
 
-    void destroy() {
+    void destroy() noexcept {
         if (initialized_) {
             ref_ = nullptr;
             initialized_ = false;
