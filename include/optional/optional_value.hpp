@@ -1,5 +1,12 @@
 #ifndef OPTIONAL_VALUE_HPP
 #define OPTIONAL_VALUE_HPP
+#include <experimental/type_traits>
+#include <type_traits>
+#include <utility>
+
+#include <optional/bad_optional_access.hpp>
+#include <optional/detail/aligned_storage.hpp>
+#include <optional/none.hpp>
 
 namespace opt {
 

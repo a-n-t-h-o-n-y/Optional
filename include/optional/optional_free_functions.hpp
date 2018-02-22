@@ -1,5 +1,6 @@
 #ifndef OPTIONAL_FREE_FUNCTIONS_HPP
 #define OPTIONAL_FREE_FUNCTIONS_HPP
+#include <optional/optional_value.hpp>
 
 namespace opt {
 

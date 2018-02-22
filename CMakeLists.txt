@@ -13,6 +13,7 @@ set(TEST_SOURCES
     "test/optional_void_test.cpp"
     "test/optional_reference_test.cpp"
     "test/aligned_storage_test.cpp"
+    "test/optional_free_functions_test.cpp"
 )
 
 add_executable(testoptional ${TEST_SOURCES})
