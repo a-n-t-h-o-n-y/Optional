@@ -59,7 +59,7 @@ Doxygen documentation can be found [here](
 https://a-n-t-h-o-n-y.github.io/Optional/).
 
 ## Tests
-Optional depends on the google testing framework for testing.
+Optional depends on the google testing framework.
 
 ## License
 This software is distributed under the [MIT License](LICENSE.txt).
