@@ -1,12 +1,12 @@
 #ifndef OPTIONAL_VALUE_HPP
 #define OPTIONAL_VALUE_HPP
-#include <experimental/type_traits>
 #include <new>
 #include <type_traits>
 #include <utility>
 
 #include <optional/bad_optional_access.hpp>
 #include <optional/detail/aligned_storage.hpp>
+#include <optional/detail/conjunction.hpp>
 #include <optional/none.hpp>
 
 namespace opt {
@@ -26,6 +26,58 @@ namespace opt {
 /// \endcode
 template <typename T>
 class Optional {
+    // type traits for noexcept expressions
+    template <typename X>
+    static constexpr bool is_nt_d_cc_ca() {
+        return detail::Conjunction<std::is_nothrow_destructible<X>,
+                                   std::is_nothrow_copy_constructible<X>,
+                                   std::is_nothrow_copy_assignable<X>>::value;
+    }
+
+    template <typename X>
+    static constexpr bool is_nt_d_mc_ma() {
+        return detail::Conjunction<std::is_nothrow_destructible<X>,
+                                   std::is_nothrow_move_constructible<X>,
+                                   std::is_nothrow_move_assignable<X>>::value;
+    }
+
+    template <typename X, typename Y>
+    static constexpr bool is_nt_d_cc_a() {
+        return detail::Conjunction<
+            std::is_nothrow_destructible<X>,
+            std::is_nothrow_copy_constructible<X>,
+            std::is_nothrow_assignable<X, const Y&>>::value;
+    }
+
+    template <typename X, typename Y>
+    static constexpr bool is_nt_d_mc_a() {
+        return detail::Conjunction<std::is_nothrow_destructible<X>,
+                                   std::is_nothrow_move_constructible<X>,
+                                   std::is_nothrow_assignable<X, Y&&>>::value;
+    }
+
+    template <typename X, typename... Args>
+    static constexpr bool is_nt_d_c() {
+        return detail::Conjunction<
+            std::is_nothrow_destructible<X>,
+            std::is_nothrow_constructible<X, Args...>>::value;
+    }
+
+    template <typename X>
+    static constexpr bool is_nt_cc() {
+        return std::is_nothrow_copy_constructible<X>::value;
+    }
+
+    template <typename X>
+    static constexpr bool is_nt_mc() {
+        return std::is_nothrow_move_constructible<X>::value;
+    }
+
+    template <typename X>
+    static constexpr bool is_nt_d() {
+        return std::is_nothrow_destructible<X>::value;
+    }
+
    public:
     using Value_type = T;
 
@@ -45,9 +97,7 @@ class Optional {
     ///
     /// *this is initialized with a copy of \p value.
     /// \param value    Value which is copied into the Optional.
-    Optional(const T& value) noexcept(is_nt_cc<T>()) {
-        this->construct(value);
-    }
+    Optional(const T& value) noexcept(is_nt_cc<T>()) { this->construct(value); }
 
     /// \brief Constructs an initialized Optional from a moveable T object.
     ///
@@ -446,61 +496,6 @@ class Optional {
             storage_.ptr_ref()->~T();
             initialized_ = false;
         }
-    }
-
-    // type traits for noexcept expressions
-    template <typename X>
-    static constexpr bool is_nt_d_cc_ca() {
-        return std::experimental::conjunction<
-            std::is_nothrow_destructible<X>,
-            std::is_nothrow_copy_constructible<X>,
-            std::is_nothrow_copy_assignable<X>>::value;
-    }
-
-    template <typename X>
-    static constexpr bool is_nt_d_mc_ma() {
-        return std::experimental::conjunction<
-            std::is_nothrow_destructible<X>,
-            std::is_nothrow_move_constructible<X>,
-            std::is_nothrow_move_assignable<X>>::value;
-    }
-
-    template <typename X, typename Y>
-    static constexpr bool is_nt_d_cc_a() {
-        return std::experimental::conjunction<
-            std::is_nothrow_destructible<X>,
-            std::is_nothrow_copy_constructible<X>,
-            std::is_nothrow_assignable<X, const Y&>>::value;
-    }
-
-    template <typename X, typename Y>
-    static constexpr bool is_nt_d_mc_a() {
-        return std::experimental::conjunction<
-            std::is_nothrow_destructible<X>,
-            std::is_nothrow_move_constructible<X>,
-            std::is_nothrow_assignable<X, Y&&>>::value;
-    }
-
-    template <typename X, typename... Args>
-    static constexpr bool is_nt_d_c() {
-        return std::experimental::conjunction<
-            std::is_nothrow_destructible<X>,
-            std::is_nothrow_constructible<X, Args...>>::value;
-    }
-
-    template <typename X>
-    static constexpr bool is_nt_cc() {
-        return std::is_nothrow_copy_constructible<X>::value;
-    }
-
-    template <typename X>
-    static constexpr bool is_nt_mc() {
-        return std::is_nothrow_move_constructible<X>::value;
-    }
-
-    template <typename X>
-    static constexpr bool is_nt_d() {
-        return std::is_nothrow_destructible<X>::value;
     }
 };
 
