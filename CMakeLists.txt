@@ -1,42 +1,29 @@
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.2)
 project(liboptional LANGUAGES CXX)
-include(GNUInstallDirs)
 enable_testing()
-add_compile_options(-std=c++14)
 
+include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set(TEST_SOURCES 
-    "test/none_test.cpp"
-    "test/optional_value_test.cpp"
-    "test/optional_void_test.cpp"
-    "test/optional_reference_test.cpp"
-    "test/aligned_storage_test.cpp"
-    "test/optional_free_functions_test.cpp"
-)
+# ADD TESTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+add_subdirectory(test)
 
-add_executable(testoptional EXCLUDE_FROM_ALL ${TEST_SOURCES})
-
-find_package(GTest REQUIRED)
-if (GTEST_FOUND)
-    target_link_libraries(testoptional ${GTEST_BOTH_LIBRARIES})
-endif()
-
-add_test(testoptional testoptional)
-
-# Build System Info For Clang-Tidy
+# CLANG TIDY
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_custom_target(compile_commands_optional ALL
     COMMAND [ -f ${CMAKE_SOURCE_DIR}/build/compile_commands.json ] && mv
         ${CMAKE_SOURCE_DIR}/build/compile_commands.json
         ${CMAKE_SOURCE_DIR}/compile_commands.json || :)
 
-# Doxygen Target
+# DOXYGEN
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Doxyfile in project/doc : make doc
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-    add_custom_target(docs_optional
-    ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/docs/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs
-    COMMENT "Generating API documentation with Doxygen" VERBATIM)
+    add_custom_target(docs
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/docs/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs
+        COMMENT "Generating API documentation with Doxygen" VERBATIM)
 endif()

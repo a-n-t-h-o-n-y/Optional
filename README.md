@@ -49,7 +49,7 @@ CMakeLists.txt will generate files to install headers and build tests.
 # In top level project directory
 mkdir build && cd build
 cmake ..            # generate make files
-make testoptional   # build tests(optional)
+make tests          # build tests(optional)
 ctest               # run tests(optional)
 sudo make install   # install header files to system include directory
 ```
@@ -59,7 +59,7 @@ Doxygen documentation can be found [here](
 https://a-n-t-h-o-n-y.github.io/Optional/).
 
 ## Tests
-Optional depends on the google testing framework.
+Optional Library uses the google testing framework.
 
 ## License
 This software is distributed under the [MIT License](LICENSE.txt).
