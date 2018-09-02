@@ -17,7 +17,7 @@ add_executable(test_optional EXCLUDE_FROM_ALL
     aligned_storage_test.cpp
 )
 
-target_link_libraries(test_optional PRIVATE gtest liboptional)
+target_link_libraries(test_optional PRIVATE gtest optional)
 target_compile_features(test_optional PRIVATE cxx_std_14)
 
 add_custom_target(tests DEPENDS test_optional)
