@@ -5,22 +5,22 @@ enable_testing()
 
 # CREATE OPTIONAL LIBRARY
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-add_library(liboptional INTERFACE)
+add_library(optional INTERFACE)
 
-target_include_directories(liboptional
+target_include_directories(optional
     INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
-target_compile_features(liboptional INTERFACE cxx_std_14)
+target_compile_features(optional INTERFACE cxx_std_14)
 
 # LIBRARY INSTALLATION
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(TARGETS liboptional EXPORT OptionalLibraryConfig)
+install(TARGETS optional EXPORT OptionalLibraryConfig)
 install(EXPORT OptionalLibraryConfig DESTINATION share/OptionalLibrary/cmake)
-export(TARGETS liboptional FILE OptionalLibraryConfig.cmake)
+export(TARGETS optional FILE OptionalLibraryConfig.cmake)
 
 # ADD TESTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
