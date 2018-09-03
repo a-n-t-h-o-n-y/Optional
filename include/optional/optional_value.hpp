@@ -332,7 +332,7 @@ class Optional {
     ///
     /// Undefined if *this is uninitialized. Overloaded on const &.
     /// \returns const l-value reference to the held object.
-    const T& operator*() const & { return storage_.ref(); }
+    const T& operator*() const& { return storage_.ref(); }
 
     /// \brief Provides direct access to the underlying object.
     ///
@@ -351,7 +351,7 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// const &.
     /// \returns const l-value reference to the underlying object.
-    const T& value() const & {
+    const T& value() const& {
         if (initialized_) {
             return storage_.ref();
         }
@@ -389,7 +389,7 @@ class Optional {
     /// \param	val Value to be returned if *this is uninitialized.
     /// \returns Either the value stored in *this, or \p val.
     template <typename U>
-    T value_or(U&& val) const & {
+    T value_or(U&& val) const& {
         if (initialized_) {
             return storage_.ref();
         }
@@ -420,7 +420,7 @@ class Optional {
     ///	\param	func    Function with signature T func().
     ///	\returns The value stored in *this, or the result of \p func().
     template <typename F>
-    T value_or_eval(F f) const & {
+    T value_or_eval(F f) const& {
         if (initialized_) {
             return storage_.ref();
         }

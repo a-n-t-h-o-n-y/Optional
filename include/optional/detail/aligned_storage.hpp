@@ -1,10 +1,11 @@
 #ifndef DETAIL_ALIGNED_STORAGE_HPP
 #define DETAIL_ALIGNED_STORAGE_HPP
+#include <cstddef>
 
 namespace opt {
 namespace detail {
 
-template <typename T>
+template <typename T, std::size_t Align = alignof(T)>
 class Aligned_storage {
    public:
     // Returns a T pointer to the underlying data.
@@ -20,7 +21,7 @@ class Aligned_storage {
     void* address() { return static_cast<void*>(data_); }
 
    private:
-    char data_[sizeof(T)];
+    alignas(Align) unsigned char data_[sizeof(T)];
 };
 
 }  // namespace detail
