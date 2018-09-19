@@ -13,7 +13,11 @@ target_include_directories(optional
         $<INSTALL_INTERFACE:include>
 )
 
-target_compile_features(optional INTERFACE cxx_std_14)
+if(${CMAKE_MAJOR_VERSION} VERSION_LESS "3.8")
+    set(CMAKE_CXX_STANDARD 14)
+else()
+    target_compile_features(optional INTERFACE cxx_std_14)
+endif()
 
 # LIBRARY INSTALLATION
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
