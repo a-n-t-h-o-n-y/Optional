@@ -20,7 +20,7 @@ add_executable(test_optional EXCLUDE_FROM_ALL
 
 target_link_libraries(test_optional PRIVATE gtest optional)
 
-if(${CMAKE_MAJOR_VERSION} VERSION_LESS "3.8")
+if(${CMAKE_VERSION} VERSION_LESS "3.8")
     set(CMAKE_CXX_STANDARD 14)
 else()
     target_compile_features(test_optional INTERFACE cxx_std_14)
