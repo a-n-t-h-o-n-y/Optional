@@ -304,13 +304,13 @@ class Optional {
         this->emplace_construct(std::forward<Args>(args)...);
     }
 
-    /// \brief Returns a reference to the held value.
+    /// \brief Return a reference to the held value.
     ///
     /// Undefined if *this is uninitialized.
     /// \returns const reference to the underlying object.
     const T& get() const { return storage_.ref(); }
 
-    /// \brief Returns a reference to the held value.
+    /// \brief Return a reference to the held value.
     ///
     /// Undefined if *this is uninitialized.
     /// \returns Reference to the underlying object.
@@ -383,7 +383,7 @@ class Optional {
     }
 
     /// \brief Direct access to the underlying object, or return \p val.
-    ///	Returns \p val if *this is uninitialized, otherwise returns a
+    ///	Return \p val if *this is uninitialized, otherwise returns a
     /// reference
     /// to the value stored in *this. Overloaded on const &.
     /// \param	val Value to be returned if *this is uninitialized.
@@ -397,7 +397,7 @@ class Optional {
     }
 
     /// \brief Direct access to the underlying object, or return \p val.
-    ///	Returns \p val if *this is uninitialized, otherwise returns an
+    ///	Return \p val if *this is uninitialized, otherwise returns an
     /// r-value
     /// reference to the value stored in *this. Overloaded on &&.
     /// \param	val Value to be returned if *this is uninitialized.
