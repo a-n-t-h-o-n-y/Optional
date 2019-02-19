@@ -30,7 +30,7 @@ class Optional<T&> {
     template <typename R, If_compatible<R, T> = 0>
     Optional(R&& ref) noexcept {
         this->construct(std::forward<R>(ref));
-    };
+    }
 
     template <typename R, If_compatible<R, T> = 0>
     Optional(bool condition, R&& ref) noexcept {
