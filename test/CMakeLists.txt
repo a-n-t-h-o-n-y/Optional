@@ -10,7 +10,7 @@ set_property(TARGET gtest PROPERTY
 
 # CREATE TEST
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-add_executable(test_optional EXCLUDE_FROM_ALL
+add_executable(optional_tests EXCLUDE_FROM_ALL
     none_test.cpp
     optional_value_test.cpp
     optional_void_test.cpp
@@ -18,14 +18,12 @@ add_executable(test_optional EXCLUDE_FROM_ALL
     aligned_storage_test.cpp
 )
 
-target_link_libraries(test_optional PRIVATE gtest optional)
+target_link_libraries(optional_tests PRIVATE gtest optional)
 
 if(${CMAKE_VERSION} VERSION_LESS "3.8")
     set(CMAKE_CXX_STANDARD 14)
 else()
-    target_compile_features(test_optional INTERFACE cxx_std_14)
+    target_compile_features(optional_tests INTERFACE cxx_std_14)
 endif()
 
-add_custom_target(tests DEPENDS test_optional)
-
-add_test(test_optional test_optional)
+add_test(optional_tests optional_tests)
