@@ -10,7 +10,7 @@ namespace opt {
 class Bad_optional_access : public std::logic_error {
    public:
     /// \param what Used to identify the exception.
-    explicit Bad_optional_access() : std::logic_error("Optional is emtpy.") {}
+    explicit Bad_optional_access() : std::logic_error("Optional is empty.") {}
 };
 
 }  // namespace opt
