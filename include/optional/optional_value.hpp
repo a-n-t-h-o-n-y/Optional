@@ -28,21 +28,24 @@ template <typename T>
 class Optional {
     // type traits for noexcept expressions
     template <typename X>
-    static constexpr bool is_nt_d_cc_ca() {
+    static constexpr bool is_nt_d_cc_ca()
+    {
         return detail::Conjunction<std::is_nothrow_destructible<X>,
                                    std::is_nothrow_copy_constructible<X>,
                                    std::is_nothrow_copy_assignable<X>>::value;
     }
 
     template <typename X>
-    static constexpr bool is_nt_d_mc_ma() {
+    static constexpr bool is_nt_d_mc_ma()
+    {
         return detail::Conjunction<std::is_nothrow_destructible<X>,
                                    std::is_nothrow_move_constructible<X>,
                                    std::is_nothrow_move_assignable<X>>::value;
     }
 
     template <typename X, typename Y>
-    static constexpr bool is_nt_d_cc_a() {
+    static constexpr bool is_nt_d_cc_a()
+    {
         return detail::Conjunction<
             std::is_nothrow_destructible<X>,
             std::is_nothrow_copy_constructible<X>,
@@ -50,31 +53,36 @@ class Optional {
     }
 
     template <typename X, typename Y>
-    static constexpr bool is_nt_d_mc_a() {
+    static constexpr bool is_nt_d_mc_a()
+    {
         return detail::Conjunction<std::is_nothrow_destructible<X>,
                                    std::is_nothrow_move_constructible<X>,
                                    std::is_nothrow_assignable<X, Y&&>>::value;
     }
 
     template <typename X, typename... Args>
-    static constexpr bool is_nt_d_c() {
+    static constexpr bool is_nt_d_c()
+    {
         return detail::Conjunction<
             std::is_nothrow_destructible<X>,
             std::is_nothrow_constructible<X, Args...>>::value;
     }
 
     template <typename X>
-    static constexpr bool is_nt_cc() {
+    static constexpr bool is_nt_cc()
+    {
         return std::is_nothrow_copy_constructible<X>::value;
     }
 
     template <typename X>
-    static constexpr bool is_nt_mc() {
+    static constexpr bool is_nt_mc()
+    {
         return std::is_nothrow_move_constructible<X>::value;
     }
 
     template <typename X>
-    static constexpr bool is_nt_d() {
+    static constexpr bool is_nt_d()
+    {
         return std::is_nothrow_destructible<X>::value;
     }
 
@@ -103,7 +111,8 @@ class Optional {
     ///
     /// \p value is move constructed into the Optional object.
     /// \param value    Value which is moved into the Optional.
-    Optional(T&& value) noexcept(is_nt_mc<T>()) {
+    Optional(T&& value) noexcept(is_nt_mc<T>())
+    {
         this->construct(std::move(value));
     }
 
@@ -113,7 +122,8 @@ class Optional {
     /// *this is not initialized.
     /// \param condition    Determines if Optional is initialized or not.
     /// \param value        Object copied into *this if \p condition is true.
-    Optional(bool condition, const T& value) noexcept(is_nt_cc<T>()) {
+    Optional(bool condition, const T& value) noexcept(is_nt_cc<T>())
+    {
         if (condition) {
             this->construct(value);
         }
@@ -125,7 +135,8 @@ class Optional {
     /// *this is not initialized.
     /// \param condition    Determines if Optional is initialized or not.
     /// \param value        Object moved into *this if \p condition is true.
-    Optional(bool condition, T&& value) noexcept(is_nt_mc<T>()) {
+    Optional(bool condition, T&& value) noexcept(is_nt_mc<T>())
+    {
         if (condition) {
             this->construct(std::move(value));
         }
@@ -140,10 +151,13 @@ class Optional {
     /// within *this, and *this will be initialized, otherwise *this is default
     /// constructed.
     /// \param rhs  Optional to copy, T must be copy constructible.
-    Optional(const Optional& rhs) noexcept(is_nt_cc<T>()) {
-        if (rhs.initialized_) {
+    Optional(const Optional& rhs) noexcept(is_nt_cc<T>())
+    {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+        if (rhs.initialized_)
             this->construct(rhs.get());
-        }
+#pragma GCC diagnostic pop
     }
 
     /// \brief Move constructs an Optional.
@@ -151,7 +165,8 @@ class Optional {
     /// If \p rhs is initialized, then its internally held value is moved into
     /// *this, and \p rhs will be empty, otherwise *this is default constructed.
     /// \param rhs  Optional to move, T must be move constructible.
-    Optional(Optional&& rhs) noexcept(is_nt_mc<T>()) {
+    Optional(Optional&& rhs) noexcept(is_nt_mc<T>())
+    {
         if (rhs.initialized_) {
             this->construct(std::move(rhs.get()));
             rhs.initialized_ = false;
@@ -165,7 +180,8 @@ class Optional {
     /// \param rhs  Object to be copied into *this.
     template <typename U>
     explicit Optional(const Optional<U>& rhs) noexcept(
-        std::is_nothrow_constructible<T, const U&>::value) {
+        std::is_nothrow_constructible<T, const U&>::value)
+    {
         if (rhs.initialized_) {
             this->construct(rhs.get());
         }
@@ -179,7 +195,8 @@ class Optional {
     /// \param rhs  Object to be moved into *this.
     template <typename U>
     explicit Optional(Optional<U>&& rhs) noexcept(
-        std::is_nothrow_constructible<T, U&&>::value) {
+        std::is_nothrow_constructible<T, U&&>::value)
+    {
         if (rhs.initialized_) {
             this->construct(std::move(rhs.get()));
             rhs.initialized_ = false;
@@ -191,12 +208,15 @@ class Optional {
     /// The object held by *this is destroyed and replaced with the contents of
     /// \p rhs. If \p rhs is empty, *this is left empty.
     /// \param rhs  Object to be copied into *this.
-    Optional& operator=(const Optional& rhs) noexcept(is_nt_d_cc_ca<T>()) {
+    Optional& operator=(const Optional& rhs) noexcept(is_nt_d_cc_ca<T>())
+    {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = rhs.get();
-        } else if (!this->is_initialized() && rhs.is_initialized()) {
+        }
+        else if (!this->is_initialized() && rhs.is_initialized()) {
             this->construct(rhs.get());
-        } else if (!rhs.is_initialized()) {
+        }
+        else if (!rhs.is_initialized()) {
             this->destroy();
         }
         return *this;
@@ -208,12 +228,15 @@ class Optional {
     /// \p rhs. If \p rhs is empty, *this is left empty. rhs is left in an
     /// invalid state.
     /// \param rhs  Object to be moved into *this.
-    Optional& operator=(Optional&& rhs) noexcept(is_nt_d_mc_ma<T>()) {
+    Optional& operator=(Optional&& rhs) noexcept(is_nt_d_mc_ma<T>())
+    {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = std::move(rhs.get());
-        } else if (!this->is_initialized() && rhs.is_initialized()) {
+        }
+        else if (!this->is_initialized() && rhs.is_initialized()) {
             this->construct(std::move(rhs.get()));
-        } else if (!rhs.is_initialized()) {
+        }
+        else if (!rhs.is_initialized()) {
             this->destroy();
         }
         rhs.initialized_ = false;
@@ -226,12 +249,15 @@ class Optional {
     /// a copy of \p rhs. U must be implicitly convertible to T.
     /// \param rhs  Optional to be copied to *this.
     template <typename U>
-    Optional& operator=(const Optional<U>& rhs) noexcept(is_nt_d_cc_a<T, U>()) {
+    Optional& operator=(const Optional<U>& rhs) noexcept(is_nt_d_cc_a<T, U>())
+    {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = rhs.get();
-        } else if (!this->is_initialized() && rhs.is_initialized()) {
+        }
+        else if (!this->is_initialized() && rhs.is_initialized()) {
             this->construct(rhs.get());
-        } else if (!rhs.is_initialized()) {
+        }
+        else if (!rhs.is_initialized()) {
             this->destroy();
         }
         return *this;
@@ -243,12 +269,15 @@ class Optional {
     /// \p rhs. T must have a move constructor from type U.
     /// \param rhs  Optional to be moved to *this.
     template <typename U>
-    Optional& operator=(Optional<U>&& rhs) noexcept(is_nt_d_mc_a<T, U>()) {
+    Optional& operator=(Optional<U>&& rhs) noexcept(is_nt_d_mc_a<T, U>())
+    {
         if (this->is_initialized() && rhs.is_initialized()) {
             this->get() = std::move(rhs.get());
-        } else if (!this->is_initialized() && rhs.is_initialized()) {
+        }
+        else if (!this->is_initialized() && rhs.is_initialized()) {
             this->construct(std::move(rhs.get()));
-        } else if (!rhs.is_initialized()) {
+        }
+        else if (!rhs.is_initialized()) {
             this->destroy();
         }
         rhs.initialized_ = false;
@@ -260,10 +289,12 @@ class Optional {
     /// If *this is initialized, the object held is destroyed and replaced
     /// with a copy of \p value. T must be copy constructible. \param value
     /// Value to be copied into *this.
-    Optional& operator=(const T& value) noexcept(is_nt_d_cc_ca<T>()) {
+    Optional& operator=(const T& value) noexcept(is_nt_d_cc_ca<T>())
+    {
         if (this->is_initialized()) {
             this->get() = value;
-        } else {
+        }
+        else {
             this->construct(value);
         }
         return *this;
@@ -274,10 +305,12 @@ class Optional {
     /// If *this is initialized, the object held is destroyed and replaced
     /// with \p value. T must be move constructible. \param value    Value
     /// to be moved into *this.
-    Optional& operator=(T&& value) noexcept(is_nt_d_mc_ma<T>()) {
+    Optional& operator=(T&& value) noexcept(is_nt_d_mc_ma<T>())
+    {
         if (this->is_initialized()) {
             this->get() = std::move(value);
-        } else {
+        }
+        else {
             this->construct(std::move(value));
         }
         return *this;
@@ -289,7 +322,8 @@ class Optional {
     /// initialized, the held object is destroyed.
     /// \param n    Use opt::none provided in none.hpp.
     /// \sa none
-    Optional& operator=(opt::None_t) noexcept(is_nt_d<T>()) {
+    Optional& operator=(opt::None_t) noexcept(is_nt_d<T>())
+    {
         this->destroy();
         return *this;
     }
@@ -299,7 +333,8 @@ class Optional {
     /// If *this is initialized, the held object is destroyed. The \p args
     /// are forwarded to the constructor of T.
     template <typename... Args>
-    void emplace(Args&&... args) noexcept(is_nt_d_c<T, Args...>()) {
+    void emplace(Args&&... args) noexcept(is_nt_d_c<T, Args...>())
+    {
         this->destroy();
         this->emplace_construct(std::forward<Args>(args)...);
     }
@@ -351,7 +386,8 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// const &.
     /// \returns const l-value reference to the underlying object.
-    const T& value() const& {
+    const T& value() const&
+    {
         if (initialized_) {
             return storage_.ref();
         }
@@ -363,7 +399,8 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &.
     /// \returns l-value reference to the underlying object.
-    T& value() & {
+    T& value() &
+    {
         if (initialized_) {
             return storage_.ref();
         }
@@ -375,7 +412,8 @@ class Optional {
     /// Throws Bad_optional_access if *this is uninitialized. Overloaded on
     /// &&.
     /// \returns r-value reference to the underlying object.
-    T&& value() && {
+    T&& value() &&
+    {
         if (initialized_) {
             return std::move(storage_.ref());
         }
@@ -389,7 +427,8 @@ class Optional {
     /// \param	val Value to be returned if *this is uninitialized.
     /// \returns Either the value stored in *this, or \p val.
     template <typename U>
-    T value_or(U&& val) const& {
+    T value_or(U&& val) const&
+    {
         if (initialized_) {
             return storage_.ref();
         }
@@ -403,7 +442,8 @@ class Optional {
     /// \param	val Value to be returned if *this is uninitialized.
     /// \returns Either the value stored in *this, or \p val.
     template <typename U>
-    T value_or(U&& val) && {
+    T value_or(U&& val) &&
+    {
         if (initialized_) {
             initialized_ = false;
             return std::move(storage_.ref());
@@ -420,7 +460,8 @@ class Optional {
     ///	\param	func    Function with signature T func().
     ///	\returns The value stored in *this, or the result of \p func().
     template <typename F>
-    T value_or_eval(F f) const& {
+    T value_or_eval(F f) const&
+    {
         if (initialized_) {
             return storage_.ref();
         }
@@ -436,7 +477,8 @@ class Optional {
     ///	\param	func    Function with signature T func().
     ///	\returns The value stored in *this, or the result of \p func().
     template <typename F>
-    T value_or_eval(F f) && {
+    T value_or_eval(F f) &&
+    {
         if (initialized_) {
             initialized_ = false;
             return std::move(storage_.ref());
@@ -475,23 +517,27 @@ class Optional {
 
     bool is_initialized() const { return initialized_; }
 
-    void construct(const T& value) {
+    void construct(const T& value)
+    {
         ::new (storage_.address()) T(value);
         initialized_ = true;
     }
 
-    void construct(T&& value) {
+    void construct(T&& value)
+    {
         ::new (storage_.address()) T(std::move(value));
         initialized_ = true;
     }
 
     template <typename... Args>
-    void emplace_construct(Args&&... args) {
+    void emplace_construct(Args&&... args)
+    {
         ::new (storage_.address()) T(std::forward<Args>(args)...);
         initialized_ = true;
     }
 
-    void destroy() {
+    void destroy()
+    {
         if (initialized_) {
             storage_.ptr_ref()->~T();
             initialized_ = false;
