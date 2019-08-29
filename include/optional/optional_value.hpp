@@ -151,11 +151,8 @@ class Optional {
     /// \param rhs  Optional to copy, T must be copy constructible.
     Optional(const Optional& rhs) noexcept(is_nt_cc<T>())
     {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
         if (rhs.initialized_)
             this->construct(rhs.get());
-#pragma GCC diagnostic pop
     }
 
     /// \brief Move constructs an Optional.
