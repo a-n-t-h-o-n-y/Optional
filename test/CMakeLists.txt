@@ -18,7 +18,7 @@ add_executable(optional_tests EXCLUDE_FROM_ALL
     aligned_storage_test.cpp
 )
 
-target_link_libraries(optional_tests PRIVATE gtest optional)
+target_link_libraries(optional_tests PUBLIC gtest optional)
 
 if(${CMAKE_VERSION} VERSION_LESS "3.8")
     set(CMAKE_CXX_STANDARD 14)
